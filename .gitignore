@@ -1,0 +1,10 @@
+.DS_Store
+.idea
+*.pyc
+.env
+credentials.json
+
+*.bin
+*.df.gzip
+ds
+.vscode
