@@ -17,7 +17,7 @@ class DSClassifierMultiQ(ClassifierMixin):
     Implementation of Classifier based on DSModel
     """
     def __init__(self, num_classes, lr=0.005, max_iter=max_iter, min_iter=2, min_dloss=0.0001, optim="adam", lossfn="MSE",
-                 debug_mode=False, step_debug_mode=False, batch_size=4000, num_workers=1,
+                 debug_mode=False, step_debug_mode=False, batch_size=4000, num_workers=0,
                  precompute_rules=False, device="cpu", force_precompute=False,
                  maf_method="random", data=None, add_in_between_rules=False):
         """
@@ -130,6 +130,10 @@ class DSClassifierMultiQ(ClassifierMixin):
 
         self.model.train()
         self.model.clear_rmap()
+
+        # Precompute rule applicability matrix once (X has index in column 0)
+        if self.model.force_precompute:
+            self.model.precompute_rule_matrix(X[:, 1:])
 
         Xt = torch.Tensor(X).to(self.device)
         if self.lossfn == "CE":

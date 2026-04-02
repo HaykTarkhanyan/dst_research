@@ -105,14 +105,40 @@ class DSModelMultiQ(nn.Module):
     def clear_rmap(self):
         self.rmap = {}
         self._all_rules = None
+        self._rule_matrix = None
+
+    def precompute_rule_matrix(self, X_raw):
+        """Precompute boolean rule-applicability matrix for all samples.
+
+        Evaluates every rule predicate on every sample ONCE and stores the
+        result as a torch bool tensor. This replaces the per-sample Python
+        loop in _select_all_rules with a single numpy/torch operation during
+        forward passes.
+
+        :param X_raw: Feature matrix WITHOUT the index column (n_samples, n_features)
+        """
+        n_samples = len(X_raw)
+        if isinstance(X_raw, torch.Tensor):
+            X_raw = X_raw.cpu().numpy()
+        mat = np.empty((n_samples, self.n), dtype=bool)
+        for j in range(self.n):
+            pred = self.preds[j]
+            for i in range(n_samples):
+                mat[i, j] = bool(pred(X_raw[i]))
+        # Store as inverted (True = rule does NOT apply) for forward() compatibility
+        self._rule_matrix = torch.tensor(~mat, dtype=torch.bool).to(self.device)
+        logger.debug("Precomputed rule matrix: %s", self._rule_matrix.shape)
 
     def _select_all_rules(self, X, indices):
         """
-        This works based on the assumption that indices will be
-        provided in order. Otherwise, the function may return uninitialized
-        values.
-        :return a bool tensor with shape (len(X), num_rules) with Trues for the rules that don't apply
+        Returns a bool tensor (len(X), num_rules) with True where rules DON'T apply.
+        Uses precomputed matrix if available, otherwise falls back to per-sample eval.
         """
+        # Fast path: precomputed matrix
+        if self._rule_matrix is not None:
+            return self._rule_matrix[indices]
+
+        # Slow path: build and cache
         if self._all_rules is None:
             self._all_rules = torch.zeros(0, self.n, dtype=torch.bool).to(self.device)
         max_index = torch.max(indices)
