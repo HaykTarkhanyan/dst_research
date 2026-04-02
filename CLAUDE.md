@@ -88,6 +88,15 @@ preds = clf.predict(X_test)
 clf.predict_explain(X_test[0])  # explainability: shows fired rules and masses
 ```
 
+## Logging
+
+All `src/` modules use `logging.getLogger(__name__)`. Logging is configured centrally in `DSEnhanced.py`:
+- `RotatingFileHandler` → `logs/dst.log` (5 MB, 2 backups)
+- `StreamHandler` → console
+- Level: `DEBUG`
+
+Do not use `print()` in library code — use `logger.debug`/`info`/`warning`/`error`. The only `print()` in the codebase is in `core.py`'s `__main__` guard.
+
 ## Tests
 
 Run the test suite with:
