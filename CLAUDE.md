@@ -44,6 +44,28 @@ core.py (DST math: MAFs, Dempster's rule, belief/plausibility)
 
 `DSModel.py` is the older binary-only version; `DSModelMultiQ.py` is the current general k-class model.
 
+### Rule Induction Framework
+
+```
+rule_adapter.py — parses rule strings from external miners into DSRule lambdas
+rule_miners.py — SkopeRulesMiner, RipperMiner, RuleFitMiner, DecisionTreeMiner
+uncertainty_loop.py — UncertaintyGuidedRefiner: iterative uncertainty-driven rule mining
+rule_ensemble.py — MultiSourceEnsemble: combine rules from multiple miners
+rule_pruning.py — ConfidenceBasedPruner: importance-based pruning + Pareto frontiers
+```
+
+Usage:
+```python
+from src.uncertainty_loop import UncertaintyGuidedRefiner
+from src.rule_miners import SkopeRulesMiner
+from src.DSClassifierMultiQ import DSClassifierMultiQ
+
+clf = DSClassifierMultiQ(num_classes=2, lr=0.005, max_iter=500, lossfn="CE")
+miner = SkopeRulesMiner(n_estimators=30, precision_min=0.3)
+refiner = UncertaintyGuidedRefiner(clf, miner, uncertainty_threshold=0.3, max_iterations=3)
+result = refiner.refine(X_train, y_train, column_names=feature_names)
+```
+
 ### Key Abstractions
 
 **Rules** (`DSRule`): Boolean predicates with captions, e.g. `DSRule(lambda x: x[0] > 5, "Feature0 > 5")`. Generated automatically from statistical breaks (quantiles) per feature, with optional pairwise multiplication rules.
@@ -105,4 +127,4 @@ Run the test suite with:
 python -m pytest tests/ -v
 ```
 
-78 tests across 4 files covering `core.py`, `DSRule.py`, `DSModelMultiQ.py`, `DSClassifierMultiQ.py`, and `utils.py`. Tests use minimal datasets (8 samples/class, 3 epochs) and module-scoped fixtures to keep runtime around 3 minutes. All tests use seed 509.
+118 tests across 6 files covering `core.py`, `DSRule.py`, `DSModelMultiQ.py`, `DSClassifierMultiQ.py`, `utils.py`, `rule_adapter.py`, and `uncertainty_loop.py`. Tests use minimal datasets (8-30 samples/class, 3 epochs) and module-scoped fixtures. All tests use seed 509.
