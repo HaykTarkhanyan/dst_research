@@ -1,6 +1,6 @@
+import logging
 import torch
 import dill
-#  import pickle
 from torch import nn
 from torch.nn.functional import pad
 import numpy as np
@@ -10,6 +10,8 @@ from itertools import count
 from .DSRule import DSRule
 from .core import create_random_maf_k, create_clustering_uncertainty, create_uniform_uncertainty
 from .utils import is_categorical
+
+logger = logging.getLogger(__name__)
 
 
 class DSModelMultiQ(nn.Module):
@@ -31,7 +33,7 @@ class DSModelMultiQ(nn.Module):
         self.device = device
         self.force_precompute = force_precompute
         self.rmap = {}
-        self.active_rules = []
+        self.active_rules = set()
         self._all_rules = None
         self.maf_method = maf_method
         self.data = data # needed for kmeans method
@@ -62,9 +64,6 @@ class DSModelMultiQ(nn.Module):
             raise ValueError(f"Method {method} not available, select one from [random, clustering, uniform]")
         m = torch.tensor(masses, requires_grad=True, dtype=torch.float)
         self._params.append(m)
-        # self.masses = torch.cat((self.masses, m.view(1, self.k + 1)))
-        # print(m.grad)
-        # self.masses.retain_grad()
 
     def forward(self, X):
         """
@@ -90,20 +89,12 @@ class DSModelMultiQ(nn.Module):
             for i in range(len(X)):
                 sel = self._select_rules(X[i, 1:], int(X[i, 0].item()))
                 if len(sel) == 0:
-                    # raise RuntimeError("No rule especified for input No %d" % i)
-                    # print("Warning: No rule especified for input No %d" % i)
                     out[i] = torch.ones(self.k).to(self.device) / self.k
                 else:
                     mt = torch.index_select(ms, 0, torch.LongTensor(sel).to(self.device))
                     qt = mt[:, :-1] + \
                         mt[:, -1].view(-1, 1) * torch.ones_like(mt[:, :-1])
                     res = qt.prod(0)
-                    # if torch.isnan(res).any():
-                    #     print(self._params)
-                    #     print(mt)
-                    #     print(qt)
-                    #     print(res)
-                    #     raise RuntimeError("NaN found in computation")
                     if res.sum().item() <= 1e-16:
                         res = res + 1e-16
                         out[i] = res / res.sum()
@@ -147,25 +138,18 @@ class DSModelMultiQ(nn.Module):
         with torch.no_grad():
             for t in self._params:
                 t.clamp_(0., 1.)
-                # if t.sum().item() <= 1e-16:
-                #     print(t)
-                #     raise RuntimeError("Zero vector found")
                 if t.sum().item() < 1:
-                    # print("AAAA")
                     t[-1].add_(1 - t.sum())
                 else:
                     t.div_(t.sum())
-        # self.masses.clamp_(0., 1.)
-        # self.masses.div_(self.masses.sum(1).view(-1,1))
 
     def check_nan(self, tag=""):
         for p in self._params:
             if torch.isnan(p).any():
-                print(p)
+                logger.error("NaN mass: %s", p)
                 raise RuntimeError("NaN mass found at %s" % tag)
             if p.grad is not None and torch.isnan(p.grad).any():
-                print(p)
-                print(p.grad)
+                logger.error("NaN grad mass: %s, grad: %s", p, p.grad)
                 raise RuntimeError("NaN grad mass found at %s" % tag)
 
     def _select_rules(self, x, index=None):
@@ -242,7 +226,7 @@ class DSModelMultiQ(nn.Module):
                 masses = r[4]
                 for j in range(len(masses)):
                     builder += "\t%s: %.3f" % ( str(classes[j])[:3] if j < len(classes) else "Unc", masses[j])
-        print(builder)
+        logger.info(builder)
 
     def generate_statistic_single_rules(self, X, breaks=2, column_names=None, generated_columns=None):
         """
@@ -366,8 +350,9 @@ class DSModelMultiQ(nn.Module):
         :param name: The target column name to generate rules
         :param breaks: Array of float indicating the values of the breaks
         """
-        i = column_names.tolist().index(name)
-        if i == -1:
+        try:
+            i = column_names.tolist().index(name)
+        except ValueError:
             raise NameError("Cannot find column with name %s" % name)
         v = breaks[0]
         # First rule
@@ -389,11 +374,11 @@ class DSModelMultiQ(nn.Module):
         :param breaks_women: Array of float indicating the values of the breaks for women
         :param gender_name: Name of the column containing the gender
         """
-        i = column_names.tolist().index(name)
-        g = column_names.tolist().index(gender_name)
-
-        if i == -1 or g == -1:
-            raise NameError("Cannot find column with name %s" % name)
+        try:
+            i = column_names.tolist().index(name)
+            g = column_names.tolist().index(gender_name)
+        except ValueError:
+            raise NameError("Cannot find column with name %s or %s" % (name, gender_name))
 
         for gv, gname, breaks in [(0, "Men", breaks_men), (1, "Women", breaks_women)]:
             v = breaks[0]
@@ -445,7 +430,6 @@ class DSModelMultiQ(nn.Module):
             self._params = sv["masses"]
             self.n = len(self.preds)
 
-        # print(self.preds)
 
     def save_rules_bin(self, filename):
         """
@@ -484,5 +468,4 @@ class DSModelMultiQ(nn.Module):
                 rs.extend(rd[k][:n])
             else:
                 rs.extend(rd[k][:round(n*imbalance[k])])
-        rids = [r[1] for r in rs]
-        self.active_rules = rids
+        self.active_rules = {r[1] for r in rs}

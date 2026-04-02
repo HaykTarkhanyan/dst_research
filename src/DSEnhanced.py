@@ -1,6 +1,7 @@
 import os
 import json
 import logging
+import logging.handlers
 import datetime
 import warnings
 
@@ -95,7 +96,7 @@ class DSEnhanced:
         
         # assert self.method in ["clustering", "random", "uniform"], f"Method {self.method} not found in the list of methods"
         
-        logging.info(f"Methods list: {self.methods_lst}")                
+        logger.info(f"Methods list: {self.methods_lst}")                
         
         self.clustering_alg = None
         self.db_eps = None # for density based opacity calculation
@@ -119,12 +120,12 @@ class DSEnhanced:
         self.datasets_to_exclude = datasets_to_exclude
         self.datasets = os.listdir(dataset_folder)
         
-        logging.info(f"Found {len(self.datasets)} datasets")
+        logger.info(f"Found {len(self.datasets)} datasets")
         if dataset:
             assert dataset in self.datasets, f"Dataset {dataset} not found in the folder"
             self.dataset = dataset
         else:
-            logging.info(f"Using the first dataset: {self.datasets[0]}")
+            logger.info(f"Using the first dataset: {self.datasets[0]}")
             self.dataset = self.datasets[0]
 
         if not os.path.exists(rules_folder):
@@ -195,7 +196,7 @@ class DSEnhanced:
         # move labels column to the end 
         self.data = self.data[[col for col in self.data.columns if col != "labels"] + ["labels"]]
 
-        logging.info(f"------ Dataset: {self.dataset_name} | Shape: {self.data.shape} | Label ratio: {label_ratio:.2f} -------")
+        logger.info(f"------ Dataset: {self.dataset_name} | Shape: {self.data.shape} | Label ratio: {label_ratio:.2f} -------")
         
         self.results["durations"]["preprocess_data"] = time() - st
         self.results["dataset"]["label_ratio"] = label_ratio
@@ -206,7 +207,7 @@ class DSEnhanced:
         st = time()
         self.data = self.data.sample(frac=1, random_state=42).reset_index(drop=True)
         self.data = self.data.apply(pd.to_numeric)
-        cut = int(train_set_size*len(self.data))
+        cut = int(self.train_set_size*len(self.data))
 
         self.train_data_df = self.data.iloc[:cut]
         self.test_data_df = self.data.iloc[cut:]
@@ -216,7 +217,7 @@ class DSEnhanced:
         self.X_test = self.data.iloc[cut:, :-1].values
         self.y_test = self.data.iloc[cut:, -1].values
 
-        logging.info(f"Step 0: Data split done | {len(self.X_train)} - {len(self.X_test)}")
+        logger.info(f"Step 0: Data split done | {len(self.X_train)} - {len(self.X_test)}")
         
         self.results["durations"]["train_test_split"] = time() - st
         self.results["dataset"]["train_row_count"] = len(self.X_train)
@@ -237,13 +238,13 @@ class DSEnhanced:
         # last column is a binary one, and has gotten scaled, please fix
         self.X_train_scaled[:, -1] = self.train_data_df["labels"].values
         self.X_test_scaled[:, -1] = self.test_data_df["labels"].values
-        logging.debug("Step 1: Standard scaling complete")
+        logger.debug("Step 1: Standard scaling complete")
         
         self.results["durations"]["standard_scaling"] = time() - st
 
     def clustering_and_inference(self):
         assert self.clustering_alg in ["kmeans", "dbscan"], f"You must specify a clustering algorithm, got {self.clustering_alg}"   
-        logging.info(f"Step 2.1: Performing {self.clustering_alg} clustering")
+        logger.info(f"Step 2.1: Performing {self.clustering_alg} clustering")
 
         if self.clustering_alg == "kmeans":
             st_clust = time()
@@ -265,7 +266,7 @@ class DSEnhanced:
                                                max_eps=self.max_eps, min_samples=self.min_samples, 
                                                step=self.step) 
             if self.clustering_model is None:
-                logging.warning(f"Could not find the desired number of clusters for {self.dataset_name}")
+                logger.warning(f"Could not find the desired number of clusters for {self.dataset_name}")
                 raise Exception("Clustering failed")
             
             self.results["durations"]["clustering_fit"] = time() - st_clust
@@ -349,10 +350,11 @@ class DSEnhanced:
                                 data=self.train_data_df, precompute_rules=True, 
                                 add_in_between_rules=self.add_in_between_rules)#.head(rows_use))
         logger.debug(f"\tModel init done")    
-        res = DSC.fit(self.X_train, self.y_train, 
+        res = DSC.fit(self.X_train, self.y_train,
                 add_single_rules=True, single_rules_breaks=self.num_breaks, add_mult_rules=self.mult_rules,
                 column_names=df_cols, print_every_epochs=1, print_final_model=self.print_final_model)
-        losses, epoch, dt = res
+        losses, epoch = res[0], res[1]
+        dt = res[2] if len(res) > 2 else time() - st
         logger.debug(f"\tModel fit done")
         
         self.results["durations"]["dst_fit"] = time() - st
@@ -376,7 +378,7 @@ class DSEnhanced:
                     save_results=True, name=name, print_results=True,
                     breaks=self.num_breaks, mult_rules=self.mult_rules, 
                     clustering_alg=self.clustering_alg, label_for_dist=LABEL_COL_FOR_DIST, plot_folder=self.plots_folder)
-        logging.info("-"*30)
+        logger.info("-"*30)
         
         self.results["dst_results"] = self.dst_res
         self.results["durations"]["dst"] = time() - st
@@ -407,12 +409,12 @@ class DSEnhanced:
             self.clustering_alg = None
  
             self.method = method
-            logging.info(f"----------- Running {self.method} method -----------")
+            logger.info(f"----------- Running {self.method} method -----------")
 
             if self.method == "clustering":
                 self.standard_scaling()
                 for cl_alg in self.clustering_alg_list:
-                    logging.info(f"----------- Running {cl_alg} clustering -----------")
+                    logger.info(f"----------- Running {cl_alg} clustering -----------")
                     self.clustering_alg = cl_alg
 
                     if cl_alg in ["kmeans", "dbscan"]:
@@ -434,8 +436,8 @@ class DSEnhanced:
                 raise Exception(f"Method {self.method} not found")  
                 
 
-            logging.info(f"Finished {self.dataset_name}")
-        logging.info("Finished all MAF methods")
+            logger.info(f"Finished {self.dataset_name}")
+        logger.info("Finished all MAF methods")
         
 
     def run_all_datasets(self):
@@ -448,30 +450,23 @@ class DSEnhanced:
             self.dataset_name = self.dataset.split(".")[0]
             self.run()
 
-        logging.info("Finished all datasets")
+        logger.info("Finished all datasets")
         
+    @staticmethod
+    def _make_json_serializable(obj):
+        """Recursively convert numpy arrays and matplotlib figures for JSON serialization."""
+        if isinstance(obj, dict):
+            return {k: DSEnhanced._make_json_serializable(v) for k, v in obj.items()}
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, plt.Figure):
+            return "todo"
+        elif isinstance(obj, list):
+            return [DSEnhanced._make_json_serializable(item) for item in obj]
+        return obj
+
     def save_results(self):
-        # there may be multiple nestings
-        for key, value in self.results.items():
-            if isinstance(value, dict):
-                for k, v in value.items():
-                    if isinstance(v, np.ndarray):
-                        self.results[key][k] = v.tolist()
-                    elif isinstance(v, plt.Figure):
-                        self.results[key][k] = "todo"#v.to_json()                                
-                                    
-                    elif isinstance(v, dict):
-                        for kk, vv in v.items():
-                            if isinstance(vv, np.ndarray):
-                                self.results[key][k][kk] = vv.tolist()
-                            elif isinstance(vv, plt.Figure):
-                                self.results[key][k][kk] = "todo"#vv.to_json()
-                            elif isinstance(vv, dict):
-                                for kkk, vvv in vv.items():
-                                    if isinstance(vvv, np.ndarray):
-                                        self.results[key][k][kk][kkk] = vvv.tolist()
-                                    elif isinstance(vvv, plt.Figure):
-                                        self.results[key][k][kk][kkk] = "todo"#vvv.to_json()
+        self.results = self._make_json_serializable(self.results)
         
         if not os.path.exists(self.res_json_folder):
             os.mkdir(self.res_json_folder)

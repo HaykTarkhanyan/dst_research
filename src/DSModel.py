@@ -1,5 +1,5 @@
+import logging
 import torch
-# import dill
 import pickle
 from torch import nn
 from torch.autograd import Variable
@@ -10,6 +10,8 @@ from torch.nn import Softmax
 from dsgd.DSRule import DSRule
 from dsgd.core import dempster_rule_t, create_random_maf
 from dsgd.utils import is_categorical
+
+logger = logging.getLogger(__name__)
 
 
 class DSModel(nn.Module):
@@ -304,7 +306,7 @@ class DSModel(nn.Module):
             self.preds = sv["preds"]
             self.masses = sv["masses"]
 
-        print(self.preds)
+        logger.debug("Loaded rules: %s", self.preds)
 
     def save_rules_bin(self, filename):
         """

@@ -1,11 +1,12 @@
 # coding=utf-8
+import logging
 import time
 import numpy as np
 import pandas as pd
 import torch
 from sklearn.base import ClassifierMixin
-from torch.autograd import Variable
-from torch.utils.data.sampler import WeightedRandomSampler
+
+logger = logging.getLogger(__name__)
 
 from .DSModelMultiQ import DSModelMultiQ
 
@@ -17,7 +18,7 @@ class DSClassifierMultiQ(ClassifierMixin):
     """
     def __init__(self, num_classes, lr=0.005, max_iter=max_iter, min_iter=2, min_dloss=0.0001, optim="adam", lossfn="MSE",
                  debug_mode=False, step_debug_mode=False, batch_size=4000, num_workers=1,
-                 precompute_rules=False, device="cpu", force_precompute=False, 
+                 precompute_rules=False, device="cpu", force_precompute=False,
                  maf_method="random", data=None, add_in_between_rules=False):
         """
         Creates the classifier and the DSModel (accesible in attribute model)
@@ -40,9 +41,9 @@ class DSClassifierMultiQ(ClassifierMixin):
         self.batch_size = batch_size
         self.num_workers = num_workers
         self.device = torch.device(device)
-        if self.device.type == "cuda" or self.device.type == "mps":  
+        if self.device.type == "cuda" or self.device.type == "mps":
             if not torch.cuda.is_available() and not torch.backends.mps.is_available():
-                print("GPU acceleration is not available, using CPU")
+                logger.warning("GPU acceleration is not available, using CPU")
                 self.device = torch.device("cpu")
             else: # With GPU more workers may throw error
                 self.num_workers = 0
@@ -54,8 +55,8 @@ class DSClassifierMultiQ(ClassifierMixin):
         self.data = data # need for kmeans method
         self.add_in_between_rules = add_in_between_rules
         self.model = DSModelMultiQ(num_classes, precompute_rules=precompute_rules,
-                                    device=self.device, force_precompute=force_precompute, 
-                                    maf_method=self.maf_method, data=self.data, 
+                                    device=self.device, force_precompute=force_precompute,
+                                    maf_method=self.maf_method, data=self.data,
                                     add_in_between_rules=self.add_in_between_rules).to(self.device)
         self.classes_ = [k for k in range(self.k)]
 
@@ -67,17 +68,8 @@ class DSClassifierMultiQ(ClassifierMixin):
         :param add_single_rules: Generates single rules
         :param single_rules_breaks: Single rule breaks number
         :param add_mult_rules: Generates multiplication pair rules
-        :param kwargs: In case of debugging, parameters of optimize_debug
+        :param kwargs: In case of debugging, parameters of optimize
         """
-        # if self.balance_class_data:
-        #     nmin = np.max(np.bincount(y))
-        #     Xm = pd.DataFrame(np.concatenate((X,y.reshape(-1,1)), axis=1))
-        #     Xm = pd.concat([Xm[Xm.iloc[:,-1] == 0].sample(n=nmin, replace=True),
-        #                     Xm[Xm.iloc[:,-1] == 1].sample(n=nmin, replace=True)], axis=0)\
-        #             .sample(frac=1).reset_index(drop=True).values
-        #     X = Xm[:,:-1]
-        #     y = Xm[:,-1].astype(int)
-
         if add_single_rules:
             self.model.generate_statistic_single_rules(X, breaks=single_rules_breaks, column_names=column_names)
         if add_mult_rules:
@@ -99,55 +91,26 @@ class DSClassifierMultiQ(ClassifierMixin):
 
         # Add index to X
         X = np.insert(X, 0, values=np.arange(0, len(X)), axis=1)
-        # print(X)
 
-        if self.step_debug_mode:
-            return self._optimize_debug_step(X, y, optimizer, criterion, **kwargs)
-        elif self.debug_mode:
-            return self._optimize_debug(X, y, optimizer, criterion, **kwargs)
-        else:
-            return self._optimize(X, y, optimizer, criterion, )
+        return self._optimize(X, y, optimizer, criterion,
+                              debug=self.debug_mode, step_debug=self.step_debug_mode, **kwargs)
 
-    def _optimize(self, X, y, optimizer, criterion):
-        losses = []
-        self.model.train()
-        self.model.clear_rmap()
+    def _optimize(self, X, y, optimizer, criterion, *,
+                  debug=False, step_debug=False,
+                  print_init_model=False, print_final_model=False, print_time=True,
+                  print_partial_time=False, print_every_epochs=None, print_least_loss=True,
+                  return_partial_dt=False, disable_all_print=False, print_epoch_progress=False):
 
-        Xt = Variable(torch.Tensor(X).to(self.device))
-        if self.lossfn == "CE":
-            yt = Variable(torch.LongTensor(y).to(self.device))
-        else:
-            yt = torch.nn.functional.one_hot(torch.LongTensor(y).to(self.device), self.k).float()
+        if step_debug:
+            debug = True
+            print_every_epochs = 1
+            print_final_model = True
+            print_partial_time = True
+            print_time = True
+            print_least_loss = True
+            print_init_model = True
 
-        dataset = torch.utils.data.TensorDataset(Xt, yt)
-        N = len(dataset)
-        train_loader = torch.utils.data.DataLoader(dataset, batch_size=self.batch_size, shuffle=False,
-                                                   num_workers=self.num_workers, pin_memory=False)
-        epoch = 0
-        for epoch in range(self.max_iter):
-            acc_loss = 0
-            for Xi, yi in train_loader:
-                optimizer.zero_grad()
-                y_pred = self.model.forward(Xi)
-                loss = criterion(y_pred, yi)
-                loss.backward(retain_graph=True)
-                optimizer.step()
-                self.model.normalize()
-                acc_loss += loss.data.item() * len(yi) / N
-
-            losses.append(acc_loss)
-            if epoch > self.min_iter and losses[-2] - acc_loss < self.min_dJ:
-                break
-
-        return losses, epoch
-
-    def _optimize_debug(self, X, y, optimizer, criterion, print_init_model=False, print_final_model=False, print_time=True,
-                        print_partial_time=False, print_every_epochs=None, print_least_loss=True, return_partial_dt=False,
-                        disable_all_print=False, print_epoch_progress=False):
-        losses = []
-        print("Optimization started")
-
-        if disable_all_print:
+        if debug and disable_all_print:
             print_every_epochs = None
             print_final_model = False
             print_partial_time = False
@@ -155,20 +118,22 @@ class DSClassifierMultiQ(ClassifierMixin):
             print_least_loss = False
             print_init_model = False
 
-        if print_init_model:
-            print(self.model)
+        if debug:
+            logger.info("Optimization started")
+            if print_init_model:
+                logger.debug(self.model)
 
-        dt_forward = 0
-        dt_loss = 0
-        dt_optim = 0
-        dt_norm = 0
+        losses = []
+        masses = [] if step_debug else None
+        dt_forward = dt_loss = dt_optim = dt_norm = 0
         ti = time.time()
 
         self.model.train()
         self.model.clear_rmap()
-        Xt = Variable(torch.Tensor(X).to(self.device))
+
+        Xt = torch.Tensor(X).to(self.device)
         if self.lossfn == "CE":
-            yt = Variable(torch.LongTensor(y).to(self.device))
+            yt = torch.LongTensor(y).to(self.device)
         else:
             yt = torch.nn.functional.one_hot(torch.LongTensor(y).to(self.device), self.k).float()
 
@@ -179,47 +144,58 @@ class DSClassifierMultiQ(ClassifierMixin):
 
         epoch = 0
         for epoch in range(self.max_iter):
-            if print_every_epochs is not None and epoch % print_every_epochs == 0:
-                print("\rProcessing epoch\t%d\t%.4f\t" % (epoch + 1, losses[-1] if len(losses) > 0 else 1), end="")
+            if debug and print_every_epochs is not None and epoch % print_every_epochs == 0:
+                logger.debug("Processing epoch\t%d\t%.4f" % (epoch + 1, losses[-1] if len(losses) > 0 else 1))
+
             acc_loss = 0
-            if print_epoch_progress:
+            if debug and print_epoch_progress:
                 acc_n = 0
-                print("")
+
             for Xi, yi in train_loader:
-                # with torch.autograd.detect_anomaly():
+                if step_debug:
+                    masses.append([mi.detach().tolist() for mi in self.model.parameters()])
+
                 ni = len(yi)
-                if print_epoch_progress:
+                if debug and print_epoch_progress:
                     acc_n += ni
-                    print(("\r %d%% [" % (100*acc_n/N)) + "#"*int(25*acc_n/N) + " "*int(25 - 25*acc_n/N) + "]", end="", flush=True)
-                tq = time.time()
+                    logger.debug("%d%% batch progress" % (100*acc_n/N))
+
+                if debug:
+                    tq = time.time()
+
                 optimizer.zero_grad()
                 y_pred = self.model.forward(Xi)
-                # self.model.check_nan("after forward")
-                dt_forward += time.time() - tq
 
-                tq = time.time()
+                if debug:
+                    dt_forward += time.time() - tq
+                    tq = time.time()
+
                 loss = criterion(y_pred, yi)
-                # self.model.check_nan("after loss computation")
+
                 if np.isnan(loss.data.item()) or not np.isfinite(loss.data.item()):
-                    print(self.model)
-                    print(y_pred)
-                    print(yi)
-                    print(loss)
+                    if debug:
+                        logger.error("Model: %s", self.model)
+                        logger.error("y_pred: %s", y_pred)
+                        logger.error("y_true: %s", yi)
+                        logger.error("loss: %s", loss)
                     raise RuntimeError("Loss is NaN or Infinity")
 
-                loss.backward(retain_graph=True)
-                # self.model.check_nan("after backward")
-                dt_loss += time.time() - tq
+                loss.backward()
 
-                tq = time.time()
+                if debug:
+                    dt_loss += time.time() - tq
+                    tq = time.time()
+
                 optimizer.step()
-                # self.model.check_nan("after optimizer step")
-                dt_optim += time.time() - tq
 
-                tq = time.time()
+                if debug:
+                    dt_optim += time.time() - tq
+                    tq = time.time()
+
                 self.model.normalize()
-                # self.model.check_nan("after normalize")
-                dt_norm += time.time() - tq
+
+                if debug:
+                    dt_norm += time.time() - tq
 
                 acc_loss += loss.data.item() * ni / N
 
@@ -227,136 +203,32 @@ class DSClassifierMultiQ(ClassifierMixin):
             if epoch > self.min_iter and losses[-2] - acc_loss < self.min_dJ:
                 break
 
+        if not debug:
+            return losses, epoch
+
         dt = time.time() - ti
         if print_time:
-            print("\nTraining time: %.2fs, epochs: %d" % (dt, epoch + 1))
+            logger.info("Training time: %.2fs, epochs: %d" % (dt, epoch + 1))
 
         if print_partial_time:
-            print("├- Forward eval time:  %.3fs" % dt_forward)
-            print("├- Loss backward time: %.3fs" % dt_loss)
-            print("├- Optimization time:  %.3fs" % dt_optim)
-            print("└- Normalization time: %.3fs" % dt_norm)
+            logger.debug("├- Forward eval time:  %.3fs" % dt_forward)
+            logger.debug("├- Loss backward time: %.3fs" % dt_loss)
+            logger.debug("├- Optimization time:  %.3fs" % dt_optim)
+            logger.debug("└- Normalization time: %.3fs" % dt_norm)
 
         if print_least_loss:
-            print("\nLeast training loss reached: %.3f" % losses[-1])
+            logger.info("Least training loss reached: %.3f" % losses[-1])
 
         if print_final_model:
-            print(self.model)
+            logger.debug(self.model)
 
-        if return_partial_dt:
+        if step_debug:
+            masses = np.array(masses)
+            return losses, epoch, dt, dt_forward, dt_loss, dt_optim, dt_norm, masses
+        elif return_partial_dt:
             return losses, epoch, dt, dt_forward, dt_loss, dt_optim, dt_norm
         else:
             return losses, epoch, dt
-
-    def _optimize_debug_step(self, X, y, optimizer, criterion):
-        losses = []
-        masses = []
-        print("Optimization started")
-
-        print_every_epochs = 1
-        print_final_model = True
-        print_partial_time = True
-        print_time = True
-        print_least_loss = True
-        print_init_model = True
-        print_epoch_progress = False
-
-        if print_init_model:
-            print(self.model)
-
-        dt_forward = 0
-        dt_loss = 0
-        dt_optim = 0
-        dt_norm = 0
-        ti = time.time()
-
-        self.model.train()
-        self.model.clear_rmap()
-        Xt = Variable(torch.Tensor(X).to(self.device))
-        if self.lossfn == "CE":
-            yt = Variable(torch.LongTensor(y).to(self.device))
-        else:
-            yt = torch.nn.functional.one_hot(torch.LongTensor(y).to(self.device), self.k).float()
-
-        dataset = torch.utils.data.TensorDataset(Xt, yt)
-        N = len(dataset)
-        train_loader = torch.utils.data.DataLoader(dataset, batch_size=self.batch_size, shuffle=False,
-                                                   num_workers=self.num_workers, pin_memory=False)
-
-        epoch = 0
-        for epoch in range(self.max_iter):
-            if print_every_epochs is not None and epoch % print_every_epochs == 0:
-                print("\rProcessing epoch\t%d\t%.4f\t" % (epoch + 1, losses[-1] if len(losses) > 0 else 1), end="")
-            acc_loss = 0
-            if print_epoch_progress:
-                acc_n = 0
-                print("")
-            for Xi, yi in train_loader:
-                # with torch.autograd.detect_anomaly():
-                m = []
-                for mi in self.model.parameters():
-                    m.append(mi.detach().tolist())
-                masses.append(m)
-
-                ni = len(yi)
-                if print_epoch_progress:
-                    acc_n += ni
-                    print(("\r %d%% [" % (100*acc_n/N)) + "#"*int(25*acc_n/N) + " "*int(25 - 25*acc_n/N) + "]", end="", flush=True)
-                tq = time.time()
-                optimizer.zero_grad()
-                y_pred = self.model.forward(Xi)
-                # self.model.check_nan("after forward")
-                dt_forward += time.time() - tq
-
-                tq = time.time()
-                loss = criterion(y_pred, yi)
-                # self.model.check_nan("after loss computation")
-                if np.isnan(loss.data.item()) or not np.isfinite(loss.data.item()):
-                    print(self.model)
-                    print(y_pred)
-                    print(yi)
-                    print(loss)
-                    raise RuntimeError("Loss is NaN or Infinity")
-
-                loss.backward(retain_graph=True)
-                # self.model.check_nan("after backward")
-                dt_loss += time.time() - tq
-
-                tq = time.time()
-                optimizer.step()
-                # self.model.check_nan("after optimizer step")
-                dt_optim += time.time() - tq
-
-                tq = time.time()
-                self.model.normalize()
-
-                # self.model.check_nan("after normalize")
-                dt_norm += time.time() - tq
-
-                acc_loss += loss.data.item() * ni / N
-
-            losses.append(acc_loss)
-            if epoch > self.min_iter and losses[-2] - acc_loss < self.min_dJ:
-                break
-
-        dt = time.time() - ti
-        if print_time:
-            print("\nTraining time: %.2fs, epochs: %d" % (dt, epoch + 1))
-
-        if print_partial_time:
-            print("├- Forward eval time:  %.3fs" % dt_forward)
-            print("├- Loss backward time: %.3fs" % dt_loss)
-            print("├- Optimization time:  %.3fs" % dt_optim)
-            print("└- Normalization time: %.3fs" % dt_norm)
-
-        if print_least_loss:
-            print("\nLeast training loss reached: %.3f" % losses[-1])
-
-        if print_final_model:
-            print(self.model)
-
-        masses = np.array(masses)
-        return losses, epoch, dt, dt_forward, dt_loss, dt_optim, dt_norm, masses
 
     def predict(self, X, one_hot=False):
         """
@@ -404,7 +276,6 @@ class DSClassifierMultiQ(ClassifierMixin):
         for i in range(len(pred)):
             builder += " Class %d: \t%.3f\n" % (i+1, pred[i])
             cols.append("mass_class_" + str(i+1))
-        # builder += " Uncertainty:\t%.3f\n\n" % pred[-1]
         cols.append("uncertainty")
 
         df_rls = pd.DataFrame(rls)

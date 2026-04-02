@@ -23,7 +23,6 @@ penalty_rate = 0.5
 
 print_results_MAF_kmeans = False
 
-LABEL_COL_FOR_DIST = "labels_clustering"
 LABEL_COL_FOR_DIST = "labels"
 
 LOG_FOLDER = "logs"
