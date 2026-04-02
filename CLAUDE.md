@@ -8,7 +8,8 @@ DSGD++ is a Dempster-Shafer Theory (DST) based classifier that uses gradient des
 
 ## Repository Structure
 
-- `codebase/` — DSGD++ implementation (Python/PyTorch)
+- `src/` — DSGD++ implementation (Python/PyTorch)
+  - `notebooks/` — Jupyter notebooks for experiments, reports, and analysis
 - `paper/` — LaTeX source for the published paper
 - `paper_plans/` — future research directions (federated, GA optimization, rule induction)
 - `lit_review/` — literature review documents
@@ -55,7 +56,7 @@ core.py (DST math: MAFs, Dempster's rule, belief/plausibility)
 ### Running Experiments
 
 ```python
-from codebase.DSEnhanced import DSEnhanced
+from src.DSEnhanced import DSEnhanced
 
 ds = DSEnhanced(dataset="breast-cancer-wisconsin", clustering_method="kmeans",
                 maf_method="clustering", breaks=3)
@@ -70,7 +71,7 @@ ds.train_DST()
 Or use `DSClassifierMultiQ` directly for sklearn-style usage:
 
 ```python
-from codebase.DSClassifierMultiQ import DSClassifierMultiQ
+from src.DSClassifierMultiQ import DSClassifierMultiQ
 
 clf = DSClassifierMultiQ(num_classes=2, lr=0.005, max_iter=500,
                          maf_method="random", lossfn="CE")
