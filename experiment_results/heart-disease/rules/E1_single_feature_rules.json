@@ -1,0 +1,458 @@
+[
+  {
+    "rule_idx": 0,
+    "caption": "age < -0.431",
+    "uncertainty_mass": 0.752176,
+    "max_class_mass": 0.182262,
+    "confidence_score": 0.045169,
+    "masses": [
+      0.065562,
+      0.182262,
+      0.752176
+    ]
+  },
+  {
+    "rule_idx": 1,
+    "caption": "-0.431 < age < 0.431",
+    "uncertainty_mass": 0.205314,
+    "max_class_mass": 0.794686,
+    "confidence_score": 0.631527,
+    "masses": [
+      0.794686,
+      0.0,
+      0.205314
+    ]
+  },
+  {
+    "rule_idx": 2,
+    "caption": "age > 0.431",
+    "uncertainty_mass": 0.639697,
+    "max_class_mass": 0.354557,
+    "confidence_score": 0.127748,
+    "masses": [
+      0.005746,
+      0.354557,
+      0.639697
+    ]
+  },
+  {
+    "rule_idx": 3,
+    "caption": "sex = -1.448571936680297",
+    "uncertainty_mass": 0.299607,
+    "max_class_mass": 0.700393,
+    "confidence_score": 0.49055,
+    "masses": [
+      0.700393,
+      0.0,
+      0.299607
+    ]
+  },
+  {
+    "rule_idx": 4,
+    "caption": "sex = 0.6903350635742042",
+    "uncertainty_mass": 0.193145,
+    "max_class_mass": 0.806855,
+    "confidence_score": 0.651014,
+    "masses": [
+      0.0,
+      0.806855,
+      0.193145
+    ]
+  },
+  {
+    "rule_idx": 5,
+    "caption": "chest = -2.2636877431579157",
+    "uncertainty_mass": 0.238944,
+    "max_class_mass": 0.761056,
+    "confidence_score": 0.579206,
+    "masses": [
+      0.761056,
+      0.0,
+      0.238944
+    ]
+  },
+  {
+    "rule_idx": 6,
+    "caption": "chest = -1.2020575112550718",
+    "uncertainty_mass": 0.501989,
+    "max_class_mass": 0.498011,
+    "confidence_score": 0.248015,
+    "masses": [
+      0.498011,
+      0.0,
+      0.501989
+    ]
+  },
+  {
+    "rule_idx": 7,
+    "caption": "chest = -0.14042727935222785",
+    "uncertainty_mass": 0.154761,
+    "max_class_mass": 0.845239,
+    "confidence_score": 0.714429,
+    "masses": [
+      0.845239,
+      0.0,
+      0.154761
+    ]
+  },
+  {
+    "rule_idx": 8,
+    "caption": "chest = 0.921202952550616",
+    "uncertainty_mass": 0.240435,
+    "max_class_mass": 0.759565,
+    "confidence_score": 0.576939,
+    "masses": [
+      0.0,
+      0.759565,
+      0.240435
+    ]
+  },
+  {
+    "rule_idx": 9,
+    "caption": "resting_blood_pressure < -0.431",
+    "uncertainty_mass": 0.439283,
+    "max_class_mass": 0.560717,
+    "confidence_score": 0.314404,
+    "masses": [
+      0.560717,
+      0.0,
+      0.439283
+    ]
+  },
+  {
+    "rule_idx": 10,
+    "caption": "-0.431 < resting_blood_pressure < 0.431",
+    "uncertainty_mass": 0.707541,
+    "max_class_mass": 0.292459,
+    "confidence_score": 0.085532,
+    "masses": [
+      0.0,
+      0.292459,
+      0.707541
+    ]
+  },
+  {
+    "rule_idx": 11,
+    "caption": "resting_blood_pressure > 0.431",
+    "uncertainty_mass": 0.564864,
+    "max_class_mass": 0.435136,
+    "confidence_score": 0.189343,
+    "masses": [
+      0.0,
+      0.435136,
+      0.564864
+    ]
+  },
+  {
+    "rule_idx": 12,
+    "caption": "serum_cholestoral < -0.431",
+    "uncertainty_mass": 0.552209,
+    "max_class_mass": 0.447791,
+    "confidence_score": 0.200517,
+    "masses": [
+      0.447791,
+      0.0,
+      0.552209
+    ]
+  },
+  {
+    "rule_idx": 13,
+    "caption": "-0.431 < serum_cholestoral < 0.431",
+    "uncertainty_mass": 0.621693,
+    "max_class_mass": 0.378307,
+    "confidence_score": 0.143116,
+    "masses": [
+      0.0,
+      0.378307,
+      0.621693
+    ]
+  },
+  {
+    "rule_idx": 14,
+    "caption": "serum_cholestoral > 0.431",
+    "uncertainty_mass": 0.637911,
+    "max_class_mass": 0.317767,
+    "confidence_score": 0.11506,
+    "masses": [
+      0.044322,
+      0.317767,
+      0.637911
+    ]
+  },
+  {
+    "rule_idx": 15,
+    "caption": "fasting_blood_sugar = -0.4514661183864806",
+    "uncertainty_mass": 0.817347,
+    "max_class_mass": 0.097797,
+    "confidence_score": 0.017863,
+    "masses": [
+      0.097797,
+      0.084856,
+      0.817347
+    ]
+  },
+  {
+    "rule_idx": 16,
+    "caption": "fasting_blood_sugar = 2.2150056433336704",
+    "uncertainty_mass": 0.607517,
+    "max_class_mass": 0.392483,
+    "confidence_score": 0.154043,
+    "masses": [
+      0.392483,
+      0.0,
+      0.607517
+    ]
+  },
+  {
+    "rule_idx": 17,
+    "caption": "resting_electrocardiographic_results = -1.0214211030672589",
+    "uncertainty_mass": 0.32686,
+    "max_class_mass": 0.67314,
+    "confidence_score": 0.453117,
+    "masses": [
+      0.67314,
+      0.0,
+      0.32686
+    ]
+  },
+  {
+    "rule_idx": 18,
+    "caption": "resting_electrocardiographic_results = -0.015959704735425864",
+    "uncertainty_mass": 0.030279,
+    "max_class_mass": 0.969721,
+    "confidence_score": 0.940359,
+    "masses": [
+      0.0,
+      0.969721,
+      0.030279
+    ]
+  },
+  {
+    "rule_idx": 19,
+    "caption": "resting_electrocardiographic_results = 0.989501693596407",
+    "uncertainty_mass": 0.371631,
+    "max_class_mass": 0.628369,
+    "confidence_score": 0.394848,
+    "masses": [
+      0.0,
+      0.628369,
+      0.371631
+    ]
+  },
+  {
+    "rule_idx": 20,
+    "caption": "maximum_heart_rate_achieved < -0.431",
+    "uncertainty_mass": 0.534389,
+    "max_class_mass": 0.465611,
+    "confidence_score": 0.216793,
+    "masses": [
+      0.0,
+      0.465611,
+      0.534389
+    ]
+  },
+  {
+    "rule_idx": 21,
+    "caption": "-0.431 < maximum_heart_rate_achieved < 0.431",
+    "uncertainty_mass": 0.359644,
+    "max_class_mass": 0.636276,
+    "confidence_score": 0.407443,
+    "masses": [
+      0.636276,
+      0.004081,
+      0.359644
+    ]
+  },
+  {
+    "rule_idx": 22,
+    "caption": "maximum_heart_rate_achieved > 0.431",
+    "uncertainty_mass": 0.519198,
+    "max_class_mass": 0.480802,
+    "confidence_score": 0.23117,
+    "masses": [
+      0.480802,
+      0.0,
+      0.519198
+    ]
+  },
+  {
+    "rule_idx": 23,
+    "caption": "exercise_induced_angina = -0.681994339470474",
+    "uncertainty_mass": 0.737322,
+    "max_class_mass": 0.185042,
+    "confidence_score": 0.048606,
+    "masses": [
+      0.185042,
+      0.077636,
+      0.737322
+    ]
+  },
+  {
+    "rule_idx": 24,
+    "caption": "exercise_induced_angina = 1.4662878298615192",
+    "uncertainty_mass": 0.725624,
+    "max_class_mass": 0.176415,
+    "confidence_score": 0.048404,
+    "masses": [
+      0.097961,
+      0.176415,
+      0.725624
+    ]
+  },
+  {
+    "rule_idx": 25,
+    "caption": "oldpeak < -0.431",
+    "uncertainty_mass": 0.395537,
+    "max_class_mass": 0.604463,
+    "confidence_score": 0.365375,
+    "masses": [
+      0.604463,
+      0.0,
+      0.395537
+    ]
+  },
+  {
+    "rule_idx": 26,
+    "caption": "-0.431 < oldpeak < 0.431",
+    "uncertainty_mass": 0.774587,
+    "max_class_mass": 0.202291,
+    "confidence_score": 0.045599,
+    "masses": [
+      0.202291,
+      0.023122,
+      0.774587
+    ]
+  },
+  {
+    "rule_idx": 27,
+    "caption": "oldpeak > 0.431",
+    "uncertainty_mass": 0.563817,
+    "max_class_mass": 0.436183,
+    "confidence_score": 0.190256,
+    "masses": [
+      0.0,
+      0.436183,
+      0.563817
+    ]
+  },
+  {
+    "rule_idx": 28,
+    "caption": "slope = -0.9114654303753005",
+    "uncertainty_mass": 0.542727,
+    "max_class_mass": 0.457273,
+    "confidence_score": 0.209098,
+    "masses": [
+      0.457273,
+      0.0,
+      0.542727
+    ]
+  },
+  {
+    "rule_idx": 29,
+    "caption": "slope = 0.6835990727814755",
+    "uncertainty_mass": 0.536532,
+    "max_class_mass": 0.463468,
+    "confidence_score": 0.214802,
+    "masses": [
+      0.0,
+      0.463468,
+      0.536532
+    ]
+  },
+  {
+    "rule_idx": 30,
+    "caption": "slope = 2.2786635759382516",
+    "uncertainty_mass": 0.153494,
+    "max_class_mass": 0.846506,
+    "confidence_score": 0.716572,
+    "masses": [
+      0.0,
+      0.846506,
+      0.153494
+    ]
+  },
+  {
+    "rule_idx": 31,
+    "caption": "number_of_major_vessels = -0.7241388205442961",
+    "uncertainty_mass": 0.26791,
+    "max_class_mass": 0.73209,
+    "confidence_score": 0.535956,
+    "masses": [
+      0.73209,
+      0.0,
+      0.26791
+    ]
+  },
+  {
+    "rule_idx": 32,
+    "caption": "number_of_major_vessels = 0.31269630887140065",
+    "uncertainty_mass": 0.107957,
+    "max_class_mass": 0.892043,
+    "confidence_score": 0.79574,
+    "masses": [
+      0.0,
+      0.892043,
+      0.107957
+    ]
+  },
+  {
+    "rule_idx": 33,
+    "caption": "number_of_major_vessels = 1.3495314382870973",
+    "uncertainty_mass": 0.246905,
+    "max_class_mass": 0.753095,
+    "confidence_score": 0.567152,
+    "masses": [
+      0.0,
+      0.753095,
+      0.246905
+    ]
+  },
+  {
+    "rule_idx": 34,
+    "caption": "number_of_major_vessels = 2.386366567702794",
+    "uncertainty_mass": 0.335335,
+    "max_class_mass": 0.664665,
+    "confidence_score": 0.44178,
+    "masses": [
+      0.0,
+      0.664665,
+      0.335335
+    ]
+  },
+  {
+    "rule_idx": 35,
+    "caption": "thal = -0.8431302704555537",
+    "uncertainty_mass": 0.130549,
+    "max_class_mass": 0.869451,
+    "confidence_score": 0.755945,
+    "masses": [
+      0.869451,
+      0.0,
+      0.130549
+    ]
+  },
+  {
+    "rule_idx": 36,
+    "caption": "thal = 0.7089959092467155",
+    "uncertainty_mass": 0.718542,
+    "max_class_mass": 0.242949,
+    "confidence_score": 0.06838,
+    "masses": [
+      0.038509,
+      0.242949,
+      0.718542
+    ]
+  },
+  {
+    "rule_idx": 37,
+    "caption": "thal = 1.2263713024808052",
+    "uncertainty_mass": 0.289429,
+    "max_class_mass": 0.710571,
+    "confidence_score": 0.504911,
+    "masses": [
+      0.0,
+      0.710571,
+      0.289429
+    ]
+  }
+]

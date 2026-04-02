@@ -37,10 +37,12 @@ from src.rule_pruning import ConfidenceBasedPruner
 SEED = 509
 RESULTS_DIR = "experiment_results/heart-disease"
 CACHE_DIR = os.path.join(RESULTS_DIR, "_cache")
+RULES_DIR = os.path.join(RESULTS_DIR, "rules")
 LOG_FILE = os.path.join(RESULTS_DIR, "experiment.log")
 
 os.makedirs(RESULTS_DIR, exist_ok=True)
 os.makedirs(CACHE_DIR, exist_ok=True)
+os.makedirs(RULES_DIR, exist_ok=True)
 
 # ---- Logging ----
 log = logging.getLogger("experiment")
@@ -117,6 +119,25 @@ def save_result(name, result):
     log.info("  Saved: %s", path)
 
 
+def save_rules_and_scores(label, clf):
+    """Save rule captions + uncertainty scores to a JSON file for later analysis."""
+    scores = clf.model.get_rule_uncertainty_scores()
+    rules_data = []
+    for s in scores:
+        rules_data.append({
+            "rule_idx": s["rule_idx"],
+            "caption": s["caption"],
+            "uncertainty_mass": round(s["uncertainty_mass"], 6),
+            "max_class_mass": round(s["max_class_mass"], 6),
+            "confidence_score": round(s["confidence_score"], 6),
+            "masses": [round(float(m), 6) for m in s["masses"]],
+        })
+    path = os.path.join(RULES_DIR, f"{label}_rules.json")
+    with open(path, "w") as f:
+        json.dump(rules_data, f, indent=2)
+    log.debug("  Saved %d rules to %s", len(rules_data), path)
+
+
 # ---- Train a single DSGD++ variant and return metrics ----
 def train_and_eval(label, X_train, y_train, X_test, y_test, col_names,
                    extra_miners=None, max_iter=500, lr=0.005, breaks=2):
@@ -163,6 +184,7 @@ def train_and_eval(label, X_train, y_train, X_test, y_test, col_names,
              label, metrics["accuracy"], metrics["f1"], metrics["roc_auc"],
              metrics["n_rules"], dt)
 
+    save_rules_and_scores(label, clf)
     save_cache(label, metrics)
     return metrics
 
@@ -246,6 +268,7 @@ def run_e2(X_train, X_test, y_train, y_test, col_names, max_iter=500):
                  metrics["initial_rules"], metrics["final_rules"],
                  metrics["iterations"], dt)
 
+        save_rules_and_scores(cache_key, result["clf"])
         results[miner_name] = metrics
         save_cache(cache_key, metrics)
 
@@ -297,6 +320,7 @@ def run_e3(X_train, X_test, y_train, y_test, col_names, max_iter=500):
                  metrics["accuracy"], metrics["f1"], metrics["n_rules"],
                  metrics["rule_sources"], dt)
 
+        save_rules_and_scores(cache_key, ensemble.clf)
         results["multi_source"] = metrics
         save_cache(cache_key, metrics)
 
@@ -348,6 +372,157 @@ def run_e4(X_train, X_test, y_train, y_test, col_names, max_iter=500):
 
     save_cache("E4_pareto", results)
     save_result("E4_pruning_pareto", results)
+    return results
+
+
+# ============================================================
+# E5: Comparison with interpretable baselines
+# ============================================================
+def run_e5(X_train, X_test, y_train, y_test, col_names):
+    log.info("=" * 60)
+    log.info("E5: Comparison with Interpretable Baselines")
+    log.info("=" * 60)
+
+    cached = load_cache("E5_baselines")
+    if cached is not None:
+        save_result("E5_baselines", cached)
+        return cached
+
+    from imodels import (
+        SkopeRulesClassifier, RuleFitClassifier,
+        BayesianRuleListClassifier, GreedyRuleListClassifier,
+        FIGSClassifier,
+    )
+    from sklearn.tree import DecisionTreeClassifier
+    import wittgenstein as lw
+
+    results = {}
+
+    baselines = [
+        ("DecisionTree_d4", DecisionTreeClassifier(max_depth=4, random_state=SEED)),
+        ("DecisionTree_d8", DecisionTreeClassifier(max_depth=8, random_state=SEED)),
+        ("SkopeRules", SkopeRulesClassifier(n_estimators=50, precision_min=0.3, recall_min=0.01, max_depth=3)),
+        ("RuleFit", RuleFitClassifier(max_rules=30, tree_size=4, random_state=SEED)),
+        ("GreedyRuleList", GreedyRuleListClassifier(max_depth=5)),
+        ("FIGS", FIGSClassifier(max_rules=10)),
+    ]
+
+    for name, clf in baselines:
+        cache_key = f"E5_{name}"
+        cached_entry = load_cache(cache_key)
+        if cached_entry is not None:
+            results[name] = cached_entry
+            continue
+
+        log.info("  Training %s...", name)
+        t0 = time.time()
+        try:
+            # SkopeRules needs feature_names in fit
+            if "Skope" in name:
+                clf.fit(X_train, y_train, feature_names=col_names)
+            elif "RuleFit" in name:
+                clf.fit(X_train, y_train, feature_names=col_names)
+            else:
+                clf.fit(X_train, y_train)
+            dt = time.time() - t0
+
+            preds = clf.predict(X_test)
+            proba = clf.predict_proba(X_test) if hasattr(clf, "predict_proba") else None
+
+            metrics = {
+                "accuracy": round(accuracy_score(y_test, preds), 4),
+                "f1": round(f1_score(y_test, preds, zero_division=0), 4),
+                "precision": round(precision_score(y_test, preds, zero_division=0), 4),
+                "recall": round(recall_score(y_test, preds, zero_division=0), 4),
+                "training_time": round(dt, 2),
+            }
+            if proba is not None:
+                metrics["roc_auc"] = round(roc_auc_score(y_test, proba[:, 1]), 4)
+            else:
+                metrics["roc_auc"] = None
+
+            log.info("  %s: acc=%.3f f1=%.3f auc=%s time=%.1fs",
+                     name, metrics["accuracy"], metrics["f1"],
+                     f'{metrics["roc_auc"]:.3f}' if metrics["roc_auc"] else "N/A", dt)
+
+        except Exception as e:
+            log.warning("  %s failed: %s", name, e)
+            metrics = {"error": str(e)}
+
+        results[name] = metrics
+        save_cache(cache_key, metrics)
+
+    # RIPPER (needs DataFrame)
+    cache_key = "E5_RIPPER"
+    cached_entry = load_cache(cache_key)
+    if cached_entry is not None:
+        results["RIPPER"] = cached_entry
+    else:
+        log.info("  Training RIPPER...")
+        t0 = time.time()
+        try:
+            import pandas as pd
+            df_tr = pd.DataFrame(X_train, columns=col_names)
+            df_tr["_target"] = y_train
+            df_te = pd.DataFrame(X_test, columns=col_names)
+
+            ripper = lw.RIPPER(prune_size=0.33, k=2)
+            unique, counts = np.unique(y_train, return_counts=True)
+            pos_class = unique[np.argmin(counts)]
+            ripper.fit(df_tr, class_feat="_target", pos_class=pos_class)
+            dt = time.time() - t0
+
+            preds = ripper.predict(df_te)
+            metrics = {
+                "accuracy": round(accuracy_score(y_test, preds), 4),
+                "f1": round(f1_score(y_test, preds, zero_division=0), 4),
+                "precision": round(precision_score(y_test, preds, zero_division=0), 4),
+                "recall": round(recall_score(y_test, preds, zero_division=0), 4),
+                "roc_auc": None,
+                "training_time": round(dt, 2),
+            }
+            log.info("  RIPPER: acc=%.3f f1=%.3f time=%.1fs",
+                     metrics["accuracy"], metrics["f1"], dt)
+        except Exception as e:
+            log.warning("  RIPPER failed: %s", e)
+            metrics = {"error": str(e)}
+
+        results["RIPPER"] = metrics
+        save_cache(cache_key, metrics)
+
+    # BayesianRuleList (needs discretized features)
+    cache_key = "E5_BayesianRuleList"
+    cached_entry = load_cache(cache_key)
+    if cached_entry is not None:
+        results["BayesianRuleList"] = cached_entry
+    else:
+        log.info("  Training BayesianRuleList...")
+        t0 = time.time()
+        try:
+            brl = BayesianRuleListClassifier()
+            brl.fit(X_train, y_train, feature_names=col_names)
+            dt = time.time() - t0
+
+            preds = brl.predict(X_test)
+            proba = brl.predict_proba(X_test)
+            metrics = {
+                "accuracy": round(accuracy_score(y_test, preds), 4),
+                "f1": round(f1_score(y_test, preds, zero_division=0), 4),
+                "precision": round(precision_score(y_test, preds, zero_division=0), 4),
+                "recall": round(recall_score(y_test, preds, zero_division=0), 4),
+                "roc_auc": round(roc_auc_score(y_test, proba[:, 1]), 4),
+                "training_time": round(dt, 2),
+            }
+            log.info("  BayesianRuleList: acc=%.3f f1=%.3f auc=%.3f time=%.1fs",
+                     metrics["accuracy"], metrics["f1"], metrics["roc_auc"], dt)
+        except Exception as e:
+            log.warning("  BayesianRuleList failed: %s", e)
+            metrics = {"error": str(e)}
+
+        results["BayesianRuleList"] = metrics
+        save_cache(cache_key, metrics)
+
+    save_result("E5_baselines", results)
     return results
 
 
@@ -438,6 +613,7 @@ if __name__ == "__main__":
     all_results["E2"] = run_e2(X_train, X_test, y_train, y_test, col_names, max_iter=args.max_iter)
     all_results["E3"] = run_e3(X_train, X_test, y_train, y_test, col_names, max_iter=args.max_iter)
     all_results["E4"] = run_e4(X_train, X_test, y_train, y_test, col_names, max_iter=args.max_iter)
+    all_results["E5"] = run_e5(X_train, X_test, y_train, y_test, col_names)
 
     # Summary table
     log.info("")
@@ -455,4 +631,11 @@ if __name__ == "__main__":
     for method, m in all_results["E3"].items():
         log.info("  E3 %-30s %6.3f %6.3f %6.3f %6d %5.1fs",
                  method, m["accuracy"], m["f1"], m["roc_auc"], m["n_rules"], m["training_time"])
+    for method, m in all_results["E5"].items():
+        if "error" in m:
+            log.info("  E5 %-30s  FAILED: %s", method, m["error"])
+        else:
+            auc_str = f'{m["roc_auc"]:.3f}' if m.get("roc_auc") else "  N/A"
+            log.info("  E5 %-30s %6.3f %6.3f %6s %6s %5.1fs",
+                     method, m["accuracy"], m["f1"], auc_str, "  -", m["training_time"])
     log.info("=" * 72)
