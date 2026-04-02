@@ -1,0 +1,9 @@
+{
+  "accuracy": 0.9707,
+  "f1": 0.9577,
+  "precision": 0.9714,
+  "recall": 0.9444,
+  "roc_auc": 0.9926,
+  "n_rules": 137,
+  "training_time": 10.84
+}

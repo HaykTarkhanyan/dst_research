@@ -193,8 +193,8 @@ def _parse_ripper_cond(cond, feature_name_map):
       "1.81 - 2.34" -> 1.81 <= feature < 2.34 (range, returns 2 conditions)
       "category"    -> feature == category (categorical)
     """
-    feat_name = cond.feature.strip()
-    val_str = cond.val.strip()
+    feat_name = str(cond.feature).strip()
+    val_str = str(cond.val).strip()
 
     if feat_name not in feature_name_map:
         raise KeyError(f"Unknown feature '{feat_name}'")

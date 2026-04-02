@@ -31,16 +31,23 @@ class UncertaintyGuidedRefiner:
         Minimum samples a weak rule must cover to trigger mining.
     max_rules_per_weak : int or None
         Cap on new rules mined per weak rule (prevents explosion).
+    max_total_rules : int or None
+        Hard cap on total model rules. Stops adding once reached.
+    max_weak_to_refine : int or None
+        Max number of weak rules to refine per iteration (picks the weakest first).
     """
 
     def __init__(self, clf, miner, uncertainty_threshold=0.3, max_iterations=5,
-                 min_covered_samples=20, max_rules_per_weak=3):
+                 min_covered_samples=20, max_rules_per_weak=3,
+                 max_total_rules=100, max_weak_to_refine=10):
         self.clf = clf
         self.miner = miner
         self.uncertainty_threshold = uncertainty_threshold
         self.max_iterations = max_iterations
         self.min_covered_samples = min_covered_samples
         self.max_rules_per_weak = max_rules_per_weak
+        self.max_total_rules = max_total_rules
+        self.max_weak_to_refine = max_weak_to_refine
 
     def refine(self, X_train, y_train, column_names=None,
                single_rules_breaks=2, add_mult_rules=False, **fit_kwargs):
@@ -99,9 +106,26 @@ class UncertaintyGuidedRefiner:
                 logger.info("No weak rules found — converged")
                 break
 
+            # Check global rule cap
+            current_rules = self.clf.model.get_rules_size()
+            if self.max_total_rules and current_rules >= self.max_total_rules:
+                logger.info("Total rules (%d) reached cap (%d) — stopping",
+                            current_rules, self.max_total_rules)
+                break
+
+            # Sort by confidence (weakest first) and limit how many we refine
+            weak_rules.sort(key=lambda s: s["confidence_score"])
+            if self.max_weak_to_refine is not None:
+                weak_rules = weak_rules[:self.max_weak_to_refine]
+
             # Step 2d: Mine targeted rules for each weak rule's covered region
             total_new_rules = 0
             for weak in weak_rules:
+                # Check global cap before each mining step
+                if self.max_total_rules and self.clf.model.get_rules_size() >= self.max_total_rules:
+                    logger.info("  Hit total rule cap (%d) mid-iteration", self.max_total_rules)
+                    break
+
                 pred = weak["pred"]
                 rule_idx = weak["rule_idx"]
 
@@ -131,6 +155,11 @@ class UncertaintyGuidedRefiner:
                 # Cap rules per weak rule
                 if self.max_rules_per_weak is not None:
                     new_rules = new_rules[:self.max_rules_per_weak]
+
+                # Don't exceed global cap
+                if self.max_total_rules:
+                    room = self.max_total_rules - self.clf.model.get_rules_size()
+                    new_rules = new_rules[:room]
 
                 for dsrule in new_rules:
                     self.clf.model.add_rule(dsrule, method="random")
