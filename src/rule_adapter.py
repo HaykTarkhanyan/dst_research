@@ -257,7 +257,7 @@ def extract_rules_from_ripper(clf, feature_name_map, max_rules=None):
     return ds_rules
 
 
-def extract_rules_from_tree(tree_clf, feature_names, feature_name_map, max_depth=None):
+def extract_rules_from_tree(tree_clf, feature_names, feature_name_map=None, max_depth=None):
     """Extract conjunctive rules from DecisionTreeClassifier leaf paths.
 
     Each root-to-leaf path becomes a conjunctive rule. Only extracts paths

@@ -114,7 +114,7 @@ class ConfidenceBasedPruner:
 
             preds = clf_copy.predict(X_test)
             acc = accuracy_score(y_test, preds)
-            f1 = f1_score(y_test, preds, average="weighted", zero_division=0)
+            f1 = f1_score(y_test, preds, zero_division=0)
 
             results.append({
                 "threshold": float(t),

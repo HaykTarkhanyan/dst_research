@@ -397,7 +397,7 @@ def run_quick_estimate(X_train, X_test, y_train, y_test, col_names):
                               precompute_rules=True, force_precompute=True)
     clf.fit(X_train, y_train, add_single_rules=True, single_rules_breaks=2, column_names=col_names)
     timings["full_data_50ep"] = time.time() - t0
-    log.info("  Full data (189 samples, 50 epochs): %.2fs", timings["full_data_50ep"])
+    log.info("  Full data (%d samples, 50 epochs): %.2fs", len(X_train), timings["full_data_50ep"])
 
     # Estimate total
     scale_factor = 500 / 50  # 500 epochs vs 50
@@ -420,7 +420,9 @@ if __name__ == "__main__":
     parser.add_argument("--max-iter", type=int, default=500, help="Max DSGD++ epochs")
     args = parser.parse_args()
 
+    import torch
     np.random.seed(SEED)
+    torch.manual_seed(SEED)
     log.info("Loading Heart Disease dataset...")
     X_train, X_test, y_train, y_test, col_names = load_and_split()
     log.info("  Train: %s, Test: %s", X_train.shape, X_test.shape)

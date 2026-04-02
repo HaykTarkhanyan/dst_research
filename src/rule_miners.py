@@ -74,10 +74,11 @@ class SkopeRulesMiner(RuleMiner):
 class RipperMiner(RuleMiner):
     """Wrapper around wittgenstein.RIPPER."""
 
-    def __init__(self, prune_size=0.33, k=2, max_rules=None):
+    def __init__(self, prune_size=0.33, k=2, max_rules=None, pos_class=None):
         self.prune_size = prune_size
         self.k = k
         self.max_rules = max_rules
+        self.pos_class = pos_class
         self.clf_ = None
         self.feature_names_ = None
 
@@ -89,8 +90,13 @@ class RipperMiner(RuleMiner):
             feature_names = [f"feature_{i}" for i in range(X.shape[1])]
         df = pd.DataFrame(X, columns=feature_names)
         df["_target"] = y
+        # Auto-detect positive class: use the minority class (or 1 if balanced)
+        pos_class = self.pos_class
+        if pos_class is None:
+            unique, counts = np.unique(y, return_counts=True)
+            pos_class = unique[np.argmin(counts)]
         self.clf_ = lw.RIPPER(prune_size=self.prune_size, k=self.k)
-        self.clf_.fit(df, class_feat="_target", pos_class=1)
+        self.clf_.fit(df, class_feat="_target", pos_class=pos_class)
         return self
 
     def extract_rules(self, feature_name_map):
@@ -138,7 +144,6 @@ class DecisionTreeMiner(RuleMiner):
         self.feature_names_ = None
 
     def fit(self, X, y, feature_names=None):
-        self.feature_names_ = feature_names
         if feature_names is None:
             feature_names = [f"feature_{i}" for i in range(X.shape[1])]
         self.feature_names_ = feature_names

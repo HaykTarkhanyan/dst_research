@@ -35,6 +35,7 @@ class DSModelMultiQ(nn.Module):
         self.rmap = {}
         self.active_rules = set()
         self._all_rules = None
+        self._rule_matrix = None
         self.maf_method = maf_method
         self.data = data # needed for kmeans method
         self.add_in_between_rules = add_in_between_rules # adds 2 rules in between the breaks
@@ -79,6 +80,13 @@ class DSModelMultiQ(nn.Module):
             qt = qs.repeat(len(X), 1, 1)
             vectors, indices = X[:, 1:], X[:, 0].long()
             sel = self._select_all_rules(vectors, indices)
+            # Also mask out inactive rules (for pruning support)
+            if len(self.active_rules) > 0:
+                inactive = torch.tensor(
+                    [j not in self.active_rules for j in range(self.n)],
+                    dtype=torch.bool, device=self.device
+                )
+                sel = sel | inactive.unsqueeze(0)
             # replace rules that don't apply with ones
             qt[sel] = 1
             temp_res = qt.prod(1)
