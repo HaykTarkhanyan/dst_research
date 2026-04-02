@@ -9,7 +9,15 @@ DSGD++ is a Dempster-Shafer Theory (DST) based classifier that uses gradient des
 ## Repository Structure
 
 - `src/` — DSGD++ implementation (Python/PyTorch)
-  - `notebooks/` — Jupyter notebooks for experiments, reports, and analysis
+  - `notebooks/` — Jupyter notebooks (recovered from DSGD-Enhanced repo)
+    - `clean.ipynb` — end-to-end pipeline: data loading, scaling, clustering (KMeans/DBSCAN), distance calc, DST training
+    - `use_this_sept_1.ipynb` — batch experiment runner across datasets, in-between rules ablation study
+    - `compare_rules.ipynb` — rule comparison between MAF methods (clustering vs random), importance scoring, LaTeX export
+    - `generate_report.ipynb` — ReportGenerator class: aggregates experiment results, uncertainty analysis, paper tables
+    - `run_clustering.ipynb` — clustering pipeline with DBSCAN/KMeans, adjusted density calculation, outlier detection
+    - `process_datasets.ipynb` — dataset preprocessing: adult, bank-full, german_credit — label encoding, missing values
+    - `interpret_findings.ipynb` — MAF comparison analysis: accuracy, F1, training time, loss across datasets (J.UCS paper)
+    - `bzbz.ipynb` — scratch/exploration notebook
 - `paper/` — LaTeX source for the published paper
 - `paper_plans/` — future research directions (federated, GA optimization, rule induction)
 - `lit_review/` — literature review documents
@@ -80,6 +88,12 @@ preds = clf.predict(X_test)
 clf.predict_explain(X_test[0])  # explainability: shows fired rules and masses
 ```
 
-## No Test Suite
+## Tests
 
-There are no unit tests. Validation is done via metric comparisons (accuracy, F1, ROC-AUC) in `utils.report_results()`.
+Run the test suite with:
+
+```bash
+python -m pytest tests/ -v
+```
+
+78 tests across 4 files covering `core.py`, `DSRule.py`, `DSModelMultiQ.py`, `DSClassifierMultiQ.py`, and `utils.py`. Tests use minimal datasets (8 samples/class, 3 epochs) and module-scoped fixtures to keep runtime around 3 minutes. All tests use seed 509.

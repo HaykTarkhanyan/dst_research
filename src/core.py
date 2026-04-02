@@ -237,7 +237,7 @@ def dempster_rule_t(m1, m2, normalize=True):
         mf_stroke = m1[2] * m2[1] + m1[1] * m2[2] + m1[1] * m2[1]
         mf_either = m1[2] * m2[2]
 
-    return torch.cat([mf_no_stroke, mf_stroke, mf_either])
+    return torch.stack([mf_no_stroke, mf_stroke, mf_either])
 
 
 def dempster_rule_kt(m1, m2, normalize=False):

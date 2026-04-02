@@ -92,7 +92,7 @@ class DSModelMultiQ(nn.Module):
                 if len(sel) == 0:
                     # raise RuntimeError("No rule especified for input No %d" % i)
                     # print("Warning: No rule especified for input No %d" % i)
-                    out[i] = torch.ones((self.k,).to(self.device)) / self.k
+                    out[i] = torch.ones(self.k).to(self.device) / self.k
                 else:
                     mt = torch.index_select(ms, 0, torch.LongTensor(sel).to(self.device))
                     qt = mt[:, :-1] + \
