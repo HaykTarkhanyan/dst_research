@@ -5,8 +5,8 @@ import random
 # Mass asigment function are represented as 4-tuple:
 #  (m_null = 0, m_cls_0, m_cls_1, m_either)
 import torch
-from utils import filter_by_rule
-from config import print_results_MAF_kmeans, LABEL_COL_FOR_DIST
+from .utils import filter_by_rule
+from .config import print_results_MAF_kmeans, LABEL_COL_FOR_DIST
 
 
 def dempster_rule(m1, m2):

@@ -7,9 +7,9 @@ import numpy as np
 from scipy.stats import norm
 from itertools import count
 
-from DSRule import DSRule
-from core import create_random_maf_k, create_clustering_uncertainty, create_uniform_uncertainty
-from utils import is_categorical
+from .DSRule import DSRule
+from .core import create_random_maf_k, create_clustering_uncertainty, create_uniform_uncertainty
+from .utils import is_categorical
 
 
 class DSModelMultiQ(nn.Module):

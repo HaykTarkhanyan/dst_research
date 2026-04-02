@@ -16,15 +16,15 @@ from sklearn.metrics import accuracy_score, confusion_matrix, f1_score
 from sklearn.model_selection import cross_validate, cross_val_score, train_test_split
 from sklearn.preprocessing import StandardScaler
 
-from config import *
-from DSClassifierMultiQ import DSClassifierMultiQ
+from .config import *
+from .DSClassifierMultiQ import DSClassifierMultiQ
 
 import matplotlib.pyplot as plt
 
 from tqdm import tqdm
 from time import time
 
-from utils import (calculate_adjusted_density, dbscan_predict,
+from .utils import (calculate_adjusted_density, dbscan_predict,
                    detect_outliers_z_score, evaluate_classifier,
                    evaluate_clustering, filter_by_rule, get_distance,
                    get_kdist_plot, remove_outliers_and_normalize,

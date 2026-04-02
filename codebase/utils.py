@@ -15,9 +15,9 @@ import plotly.express as px
 import datetime 
 import pandas as pd
 import os
-from config import *
+from .config import *
 
-from config import LOWER_CONFIDENCE_BY_PROPORTION, OUTLIER_THRESHOLD_NUM_STD
+from .config import LOWER_CONFIDENCE_BY_PROPORTION, OUTLIER_THRESHOLD_NUM_STD
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s", 
