@@ -211,6 +211,32 @@ class DSModelMultiQ(nn.Module):
 
         return rules
 
+    def get_rule_uncertainty_scores(self):
+        """Return per-rule uncertainty diagnostics for the iterative refinement loop.
+
+        Returns:
+            list of dicts with keys: rule_idx, pred, caption, uncertainty_mass,
+            max_class_mass, confidence_score, masses
+        """
+        with torch.no_grad():
+            results = []
+            for i in range(len(self._params)):
+                ms = self._params[i].detach().numpy()
+                uncertainty_mass = float(ms[-1])
+                class_masses = ms[:-1]
+                max_class_mass = float(class_masses.max())
+                confidence = max_class_mass * (1 - uncertainty_mass)
+                results.append({
+                    "rule_idx": i,
+                    "pred": self.preds[i],
+                    "caption": str(self.preds[i]),
+                    "uncertainty_mass": uncertainty_mass,
+                    "max_class_mass": max_class_mass,
+                    "confidence_score": confidence,
+                    "masses": ms.copy(),
+                })
+        return results
+
     def print_most_important_rules(self, classes=None, threshold=0.2):
         rules = self.find_most_important_rules(classes, threshold)
 

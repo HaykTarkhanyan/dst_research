@@ -16,5 +16,9 @@ matplotlib==3.10.8
 # Notebooks
 ipykernel
 
+# Rule mining
+imodels==2.0.4
+wittgenstein==0.3.4
+
 # Testing
 pytest==8.4.1
