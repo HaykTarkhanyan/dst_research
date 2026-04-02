@@ -1,0 +1,80 @@
+00:51:05 [INFO] Dataset: ionosphere
+00:51:05 [INFO]   Train: (245, 34), Test: (106, 34), Features: 34
+00:51:05 [INFO] ============================================================
+00:51:05 [INFO] E1: Rule Source Comparison
+00:51:05 [INFO] ============================================================
+00:51:05 [INFO]   E1_single_feature: training 99 rules (99 base + 0 mined)...
+00:51:32 [INFO]   E1_single_feature: acc=0.915 f1=0.936 auc=0.926 rules=99 time=26.0s
+00:51:48 [INFO]   E1_skope_rules: training 177 rules (99 base + 78 mined)...
+00:52:40 [INFO]   E1_skope_rules: acc=0.924 f1=0.943 auc=0.932 rules=177 time=64.9s
+00:52:45 [INFO]   E1_ripper: training 107 rules (99 base + 8 mined)...
+00:53:00 [INFO]   E1_ripper: acc=0.953 f1=0.965 auc=0.949 rules=107 time=19.3s
+00:53:00 [INFO]   E1_decision_tree: training 106 rules (99 base + 7 mined)...
+00:53:21 [INFO]   E1_decision_tree: acc=0.924 f1=0.942 auc=0.926 rules=106 time=20.3s
+00:53:21 [INFO] ============================================================
+00:53:21 [INFO] E2: Iterative Uncertainty-Guided Refinement
+00:53:21 [INFO] ============================================================
+00:53:21 [INFO]   Refiner with SkopeRules (cap=306 total rules)...
+00:58:20 [INFO]   SkopeRules: acc=0.906 f1=0.929 rules=99->189 (3 iters) time=293.8s
+00:58:20 [INFO]   Refiner with DecisionTree (cap=306 total rules)...
+00:59:49 [INFO]   DecisionTree: acc=0.896 f1=0.921 rules=99->183 (3 iters) time=85.0s
+00:59:49 [INFO] ============================================================
+00:59:49 [INFO] E3: Multi-Source Rule Ensemble
+00:59:49 [INFO] ============================================================
+01:00:53 [INFO]   single_source: acc=0.915 f1=0.936 rules=99 time=63.0s
+01:00:53 [INFO]   Multi-source ensemble...
+01:01:28 [INFO]   multi_source: acc=0.915 f1=0.935 rules=121 sources={'base': 99, 'SkopeRulesMiner': 10, 'RipperMiner': 7, 'DecisionTreeMiner': 5} time=34.3s
+01:01:28 [INFO] ============================================================
+01:01:28 [INFO] E4: Pruning Pareto Frontier
+01:01:28 [INFO] ============================================================
+01:01:28 [INFO]   Training base model (ensemble)...
+01:01:41 [INFO]   Base model: 189 rules (12.3s)
+01:01:41 [INFO]   Pruning: confidence...
+01:01:49 [INFO]     t=0.00: 189 rules, acc=0.915
+01:01:49 [INFO]     t=0.13: 8 rules, acc=0.443
+01:01:49 [INFO]     t=0.26: 2 rules, acc=0.368
+01:01:49 [INFO]     t=0.39: 1 rules, acc=0.368
+01:01:49 [INFO]   Pruning: random...
+01:01:55 [INFO]     t=0.00: 189 rules, acc=0.915
+01:01:55 [INFO]     t=0.13: 155 rules, acc=0.925
+01:01:55 [INFO]     t=0.26: 137 rules, acc=0.925
+01:01:55 [INFO]     t=0.39: 119 rules, acc=0.915
+01:01:55 [INFO] ============================================================
+01:01:55 [INFO] E5: Interpretable Baselines
+01:01:55 [INFO] ============================================================
+01:01:55 [INFO]   DecisionTree_d4...
+01:01:55 [INFO]   DecisionTree_d4: acc=0.896 f1=0.921 time=0.0s
+01:01:55 [INFO]   DecisionTree_d8...
+01:01:55 [INFO]   DecisionTree_d8: acc=0.877 f1=0.904 time=0.0s
+01:01:55 [INFO]   SkopeRules...
+01:01:58 [INFO]   SkopeRules: acc=0.887 f1=0.910 time=2.3s
+01:01:58 [INFO]   RuleFit...
+01:02:02 [INFO]   RuleFit: acc=0.915 f1=0.936 time=3.4s
+01:02:02 [INFO]   GreedyRuleList...
+01:02:02 [INFO]   GreedyRuleList: acc=0.849 f1=0.895 time=0.0s
+01:02:02 [INFO]   FIGS...
+01:02:02 [INFO]   FIGS: acc=0.906 f1=0.927 time=0.1s
+01:02:02 [INFO]   RIPPER...
+01:02:03 [INFO]   RIPPER: acc=0.160 f1=0.063 time=1.2s
+01:02:03 [INFO] 
+01:02:03 [INFO] ========================================================================
+01:02:03 [INFO] SUMMARY
+01:02:03 [INFO] ========================================================================
+01:02:03 [INFO] Method                                 Acc     F1    AUC  Rules   Time
+01:02:03 [INFO] ------------------------------------------------------------------------
+01:02:03 [INFO]   E1 single_feature                  0.915  0.936  0.926     99  26.0s
+01:02:03 [INFO]   E1 skope_rules                     0.924  0.943  0.932    177  64.9s
+01:02:03 [INFO]   E1 ripper                          0.953  0.965  0.949    107  19.3s
+01:02:03 [INFO]   E1 decision_tree                   0.924  0.942  0.926    106  20.3s
+01:02:03 [INFO]   E2 SkopeRules                      0.906  0.929  0.957    189 293.8s
+01:02:03 [INFO]   E2 DecisionTree                    0.896  0.921  0.920    183  85.0s
+01:02:03 [INFO]   E3 single_source                   0.915  0.936  0.924     99  63.0s
+01:02:03 [INFO]   E3 multi_source                    0.915  0.935  0.927    121  34.3s
+01:02:03 [INFO]   E5 DecisionTree_d4                 0.896  0.921  0.910      -   0.0s
+01:02:03 [INFO]   E5 DecisionTree_d8                 0.877  0.904  0.878      -   0.0s
+01:02:03 [INFO]   E5 SkopeRules                      0.887  0.910  0.949      -   2.3s
+01:02:03 [INFO]   E5 RuleFit                         0.915  0.936  0.949      -   3.4s
+01:02:03 [INFO]   E5 GreedyRuleList                  0.849  0.895  0.789      -   0.0s
+01:02:03 [INFO]   E5 FIGS                            0.906  0.927  0.884      -   0.1s
+01:02:03 [INFO]   E5 RIPPER                          0.160  0.063    N/A      -   1.2s
+01:02:03 [INFO] ========================================================================

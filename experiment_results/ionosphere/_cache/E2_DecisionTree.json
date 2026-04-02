@@ -1,0 +1,31 @@
+{
+  "accuracy": 0.8962,
+  "f1": 0.9209,
+  "precision": 0.9014,
+  "recall": 0.9412,
+  "roc_auc": 0.9199,
+  "initial_rules": 99,
+  "final_rules": 183,
+  "iterations": 3,
+  "history": [
+    {
+      "iteration": 1,
+      "weak_rules_found": 10,
+      "rules_mined": 30,
+      "total_rules": 129
+    },
+    {
+      "iteration": 2,
+      "weak_rules_found": 10,
+      "rules_mined": 30,
+      "total_rules": 159
+    },
+    {
+      "iteration": 3,
+      "weak_rules_found": 10,
+      "rules_mined": 24,
+      "total_rules": 183
+    }
+  ],
+  "training_time": 85.04
+}
