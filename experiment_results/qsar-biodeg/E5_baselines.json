@@ -47,6 +47,30 @@
     "roc_auc": 0.8555,
     "training_time": 0.47
   },
+  "GradientBoosting": {
+    "accuracy": 0.8454,
+    "f1": 0.8863,
+    "precision": 0.8643,
+    "recall": 0.9095,
+    "roc_auc": 0.9241,
+    "training_time": 2.33
+  },
+  "RandomForest": {
+    "accuracy": 0.858,
+    "f1": 0.8956,
+    "precision": 0.8733,
+    "recall": 0.919,
+    "roc_auc": 0.9387,
+    "training_time": 1.25
+  },
+  "LogisticRegression": {
+    "accuracy": 0.8644,
+    "f1": 0.8979,
+    "precision": 0.8957,
+    "recall": 0.9,
+    "roc_auc": 0.9199,
+    "training_time": 0.08
+  },
   "RIPPER": {
     "accuracy": 0.183,
     "f1": 0.116,

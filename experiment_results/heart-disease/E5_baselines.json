@@ -47,6 +47,30 @@
     "training_time": 0.53,
     "roc_auc": 0.8404
   },
+  "GradientBoosting": {
+    "accuracy": 0.7778,
+    "f1": 0.7568,
+    "precision": 0.7368,
+    "recall": 0.7778,
+    "roc_auc": 0.8728,
+    "training_time": 0.65
+  },
+  "RandomForest": {
+    "accuracy": 0.7901,
+    "f1": 0.7792,
+    "precision": 0.7317,
+    "recall": 0.8333,
+    "roc_auc": 0.8991,
+    "training_time": 0.57
+  },
+  "LogisticRegression": {
+    "accuracy": 0.8025,
+    "f1": 0.7778,
+    "precision": 0.7778,
+    "recall": 0.7778,
+    "roc_auc": 0.8821,
+    "training_time": 0.04
+  },
   "RIPPER": {
     "accuracy": 0.8025,
     "f1": 0.7778,
@@ -54,8 +78,5 @@
     "recall": 0.7778,
     "roc_auc": null,
     "training_time": 1.34
-  },
-  "BayesianRuleList": {
-    "error": "All numeric features must be discretized prior to fitting!"
   }
 }

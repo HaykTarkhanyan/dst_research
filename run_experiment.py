@@ -354,6 +354,8 @@ def run_e5(dirs, log, X_tr, X_te, y_tr, y_te, cols):
 
     from imodels import SkopeRulesClassifier, RuleFitClassifier, GreedyRuleListClassifier, FIGSClassifier
     from sklearn.tree import DecisionTreeClassifier
+    from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
+    from sklearn.linear_model import LogisticRegression
     import wittgenstein as lw
 
     results = {}
@@ -365,6 +367,9 @@ def run_e5(dirs, log, X_tr, X_te, y_tr, y_te, cols):
         ("RuleFit", RuleFitClassifier(max_rules=30, tree_size=4, random_state=SEED)),
         ("GreedyRuleList", GreedyRuleListClassifier(max_depth=5)),
         ("FIGS", FIGSClassifier(max_rules=10)),
+        ("GradientBoosting", GradientBoostingClassifier(n_estimators=100, max_depth=4, random_state=SEED)),
+        ("RandomForest", RandomForestClassifier(n_estimators=100, max_depth=8, random_state=SEED)),
+        ("LogisticRegression", LogisticRegression(max_iter=1000, random_state=SEED)),
     ]
 
     for name, clf in baselines:
