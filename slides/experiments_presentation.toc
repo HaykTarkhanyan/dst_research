@@ -1,0 +1,10 @@
+\beamer@sectionintoc {1}{Background: Dempster-Shafer Theory}{3}{0}{1}
+\beamer@sectionintoc {2}{DSGD++ Classifier}{6}{0}{2}
+\beamer@sectionintoc {3}{E1: Rule Source Comparison}{10}{0}{3}
+\beamer@sectionintoc {4}{E2: Iterative Uncertainty-Guided Refinement}{13}{0}{4}
+\beamer@sectionintoc {5}{E3: Multi-Source Rule Ensemble}{18}{0}{5}
+\beamer@sectionintoc {6}{E4: Pruning Pareto Frontier}{20}{0}{6}
+\beamer@sectionintoc {7}{E5: Baselines}{22}{0}{7}
+\beamer@sectionintoc {8}{MAF Initialization Comparison}{23}{0}{8}
+\beamer@sectionintoc {9}{Datasets and Setup}{24}{0}{9}
+\beamer@sectionintoc {10}{Summary}{26}{0}{10}
