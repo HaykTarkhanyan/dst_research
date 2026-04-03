@@ -161,8 +161,9 @@ class UncertaintyGuidedRefiner:
                     room = self.max_total_rules - self.clf.model.get_rules_size()
                     new_rules = new_rules[:room]
 
+                add_method = getattr(self.clf, "maf_method", "random")
                 for dsrule in new_rules:
-                    self.clf.model.add_rule(dsrule, method="random")
+                    self.clf.model.add_rule(dsrule, method=add_method)
                     total_new_rules += 1
 
             if total_new_rules == 0:

@@ -1,0 +1,350 @@
+[
+  {
+    "rule_idx": 0,
+    "caption": "V1 < -0.431",
+    "uncertainty_mass": 0.438159,
+    "max_class_mass": 0.556059,
+    "confidence_score": 0.312417,
+    "masses": [
+      0.005781,
+      0.556059,
+      0.438159
+    ]
+  },
+  {
+    "rule_idx": 1,
+    "caption": "-0.431 < V1 < 0.431",
+    "uncertainty_mass": 0.392545,
+    "max_class_mass": 0.607455,
+    "confidence_score": 0.369002,
+    "masses": [
+      0.607455,
+      0.0,
+      0.392545
+    ]
+  },
+  {
+    "rule_idx": 2,
+    "caption": "V1 > 0.431",
+    "uncertainty_mass": 0.234477,
+    "max_class_mass": 0.765523,
+    "confidence_score": 0.586025,
+    "masses": [
+      0.0,
+      0.765523,
+      0.234477
+    ]
+  },
+  {
+    "rule_idx": 3,
+    "caption": "V2 < -0.431",
+    "uncertainty_mass": 0.407905,
+    "max_class_mass": 0.566522,
+    "confidence_score": 0.335435,
+    "masses": [
+      0.566522,
+      0.025572,
+      0.407905
+    ]
+  },
+  {
+    "rule_idx": 4,
+    "caption": "-0.431 < V2 < 0.431",
+    "uncertainty_mass": 0.355576,
+    "max_class_mass": 0.33667,
+    "confidence_score": 0.216958,
+    "masses": [
+      0.307754,
+      0.33667,
+      0.355576
+    ]
+  },
+  {
+    "rule_idx": 5,
+    "caption": "V2 > 0.431",
+    "uncertainty_mass": 0.282938,
+    "max_class_mass": 0.717062,
+    "confidence_score": 0.514178,
+    "masses": [
+      0.0,
+      0.717062,
+      0.282938
+    ]
+  },
+  {
+    "rule_idx": 6,
+    "caption": "V3 < -0.431",
+    "uncertainty_mass": 0.258959,
+    "max_class_mass": 0.667054,
+    "confidence_score": 0.494314,
+    "masses": [
+      0.073987,
+      0.667054,
+      0.258959
+    ]
+  },
+  {
+    "rule_idx": 7,
+    "caption": "-0.431 < V3 < 0.431",
+    "uncertainty_mass": 0.383422,
+    "max_class_mass": 0.593189,
+    "confidence_score": 0.365747,
+    "masses": [
+      0.593189,
+      0.023389,
+      0.383422
+    ]
+  },
+  {
+    "rule_idx": 8,
+    "caption": "V3 > 0.431",
+    "uncertainty_mass": 0.385961,
+    "max_class_mass": 0.442301,
+    "confidence_score": 0.27159,
+    "masses": [
+      0.442301,
+      0.171738,
+      0.385961
+    ]
+  },
+  {
+    "rule_idx": 9,
+    "caption": "V4 < -0.431",
+    "uncertainty_mass": 0.340101,
+    "max_class_mass": 0.620816,
+    "confidence_score": 0.409675,
+    "masses": [
+      0.039083,
+      0.620816,
+      0.340101
+    ]
+  },
+  {
+    "rule_idx": 10,
+    "caption": "-0.431 < V4 < 0.431",
+    "uncertainty_mass": 0.254991,
+    "max_class_mass": 0.676162,
+    "confidence_score": 0.503747,
+    "masses": [
+      0.068846,
+      0.676162,
+      0.254991
+    ]
+  },
+  {
+    "rule_idx": 11,
+    "caption": "V4 > 0.431",
+    "uncertainty_mass": 0.437832,
+    "max_class_mass": 0.474674,
+    "confidence_score": 0.266847,
+    "masses": [
+      0.474674,
+      0.087495,
+      0.437832
+    ]
+  },
+  {
+    "rule_idx": 12,
+    "caption": "V5 < -0.431",
+    "uncertainty_mass": 0.430677,
+    "max_class_mass": 0.521579,
+    "confidence_score": 0.296947,
+    "masses": [
+      0.047744,
+      0.521579,
+      0.430677
+    ]
+  },
+  {
+    "rule_idx": 13,
+    "caption": "-0.431 < V5 < 0.431",
+    "uncertainty_mass": 0.265244,
+    "max_class_mass": 0.66675,
+    "confidence_score": 0.489899,
+    "masses": [
+      0.068007,
+      0.66675,
+      0.265244
+    ]
+  },
+  {
+    "rule_idx": 14,
+    "caption": "V5 > 0.431",
+    "uncertainty_mass": 0.483285,
+    "max_class_mass": 0.400178,
+    "confidence_score": 0.206778,
+    "masses": [
+      0.400178,
+      0.116537,
+      0.483285
+    ]
+  },
+  {
+    "rule_idx": 15,
+    "caption": "V4 <= 0.2174185812473297 and V4 <= -0.8702249526977539 and V2 <= -0.36416958272457123 and V1 <= 0.8698053359985352",
+    "uncertainty_mass": 0.548364,
+    "max_class_mass": 0.403259,
+    "confidence_score": 0.182127,
+    "masses": [
+      0.403259,
+      0.048377,
+      0.548364
+    ]
+  },
+  {
+    "rule_idx": 16,
+    "caption": "V4 <= 0.2174185812473297 and V4 <= -0.8702249526977539 and V2 <= -0.36416958272457123 and V1 > 0.8698053359985352",
+    "uncertainty_mass": 0.503978,
+    "max_class_mass": 0.488687,
+    "confidence_score": 0.2424,
+    "masses": [
+      0.007335,
+      0.488687,
+      0.503978
+    ]
+  },
+  {
+    "rule_idx": 17,
+    "caption": "V4 <= 0.2174185812473297 and V4 <= -0.8702249526977539 and V2 > -0.36416958272457123 and V1 <= -0.004039563238620758",
+    "uncertainty_mass": 0.382191,
+    "max_class_mass": 0.617809,
+    "confidence_score": 0.381688,
+    "masses": [
+      0.0,
+      0.617809,
+      0.382191
+    ]
+  },
+  {
+    "rule_idx": 18,
+    "caption": "V4 <= 0.2174185812473297 and V4 <= -0.8702249526977539 and V2 > -0.36416958272457123 and V1 > -0.004039563238620758",
+    "uncertainty_mass": 0.355162,
+    "max_class_mass": 0.644838,
+    "confidence_score": 0.415816,
+    "masses": [
+      0.644838,
+      0.0,
+      0.355162
+    ]
+  },
+  {
+    "rule_idx": 19,
+    "caption": "V4 <= 0.2174185812473297 and V4 > -0.8702249526977539 and V4 <= -0.06577199324965477 and V3 <= -0.014921912457793951",
+    "uncertainty_mass": 0.153897,
+    "max_class_mass": 0.846103,
+    "confidence_score": 0.715891,
+    "masses": [
+      0.0,
+      0.846103,
+      0.153897
+    ]
+  },
+  {
+    "rule_idx": 20,
+    "caption": "V4 <= 0.2174185812473297 and V4 > -0.8702249526977539 and V4 <= -0.06577199324965477 and V3 > -0.014921912457793951",
+    "uncertainty_mass": 0.229197,
+    "max_class_mass": 0.770803,
+    "confidence_score": 0.594138,
+    "masses": [
+      0.0,
+      0.770803,
+      0.229197
+    ]
+  },
+  {
+    "rule_idx": 21,
+    "caption": "V4 <= 0.2174185812473297 and V4 > -0.8702249526977539 and V4 > -0.06577199324965477 and V3 <= 0.8036867678165436",
+    "uncertainty_mass": 0.264393,
+    "max_class_mass": 0.735607,
+    "confidence_score": 0.541118,
+    "masses": [
+      0.0,
+      0.735607,
+      0.264393
+    ]
+  },
+  {
+    "rule_idx": 22,
+    "caption": "V4 <= 0.2174185812473297 and V4 > -0.8702249526977539 and V4 > -0.06577199324965477 and V3 > 0.8036867678165436",
+    "uncertainty_mass": 0.065107,
+    "max_class_mass": 0.934893,
+    "confidence_score": 0.874025,
+    "masses": [
+      0.934893,
+      0.0,
+      0.065107
+    ]
+  },
+  {
+    "rule_idx": 23,
+    "caption": "V4 > 0.2174185812473297 and V2 <= 0.1887122392654419 and V1 <= 1.0476200580596924 and V1 <= -0.7257026731967926",
+    "uncertainty_mass": 0.476139,
+    "max_class_mass": 0.523861,
+    "confidence_score": 0.274431,
+    "masses": [
+      0.0,
+      0.523861,
+      0.476139
+    ]
+  },
+  {
+    "rule_idx": 24,
+    "caption": "V4 > 0.2174185812473297 and V2 <= 0.1887122392654419 and V1 <= 1.0476200580596924 and V1 > -0.7257026731967926",
+    "uncertainty_mass": 0.38361,
+    "max_class_mass": 0.61639,
+    "confidence_score": 0.379937,
+    "masses": [
+      0.61639,
+      0.0,
+      0.38361
+    ]
+  },
+  {
+    "rule_idx": 25,
+    "caption": "V4 > 0.2174185812473297 and V2 <= 0.1887122392654419 and V1 > 1.0476200580596924",
+    "uncertainty_mass": 0.32423,
+    "max_class_mass": 0.67577,
+    "confidence_score": 0.456665,
+    "masses": [
+      0.0,
+      0.67577,
+      0.32423
+    ]
+  },
+  {
+    "rule_idx": 26,
+    "caption": "V4 > 0.2174185812473297 and V2 > 0.1887122392654419 and V1 <= -0.6337018311023712",
+    "uncertainty_mass": 0.103513,
+    "max_class_mass": 0.896487,
+    "confidence_score": 0.803689,
+    "masses": [
+      0.0,
+      0.896487,
+      0.103513
+    ]
+  },
+  {
+    "rule_idx": 27,
+    "caption": "V4 > 0.2174185812473297 and V2 > 0.1887122392654419 and V1 > -0.6337018311023712 and V3 <= 0.08664386719465256",
+    "uncertainty_mass": 0.280782,
+    "max_class_mass": 0.719218,
+    "confidence_score": 0.517275,
+    "masses": [
+      0.0,
+      0.719218,
+      0.280782
+    ]
+  },
+  {
+    "rule_idx": 28,
+    "caption": "V4 > 0.2174185812473297 and V2 > 0.1887122392654419 and V1 > -0.6337018311023712 and V3 > 0.08664386719465256",
+    "uncertainty_mass": 0.443171,
+    "max_class_mass": 0.556829,
+    "confidence_score": 0.310059,
+    "masses": [
+      0.556829,
+      0.0,
+      0.443171
+    ]
+  }
+]

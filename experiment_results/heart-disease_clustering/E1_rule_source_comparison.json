@@ -1,0 +1,42 @@
+{
+  "single_feature": {
+    "accuracy": 0.5556,
+    "f1": 0.6087,
+    "precision": 0.5,
+    "recall": 0.7778,
+    "roc_auc": 0.6673,
+    "n_rules": 38,
+    "training_time": 21.26,
+    "maf_init": "clustering"
+  },
+  "skope_rules": {
+    "accuracy": 0.7284,
+    "f1": 0.7609,
+    "precision": 0.625,
+    "recall": 0.9722,
+    "roc_auc": 0.8824,
+    "n_rules": 150,
+    "training_time": 40.86,
+    "maf_init": "clustering"
+  },
+  "ripper": {
+    "accuracy": 0.6049,
+    "f1": 0.6098,
+    "precision": 0.5435,
+    "recall": 0.6944,
+    "roc_auc": 0.6549,
+    "n_rules": 43,
+    "training_time": 28.67,
+    "maf_init": "clustering"
+  },
+  "decision_tree": {
+    "accuracy": 0.7654,
+    "f1": 0.7595,
+    "precision": 0.6977,
+    "recall": 0.8333,
+    "roc_auc": 0.7654,
+    "n_rules": 51,
+    "training_time": 12.98,
+    "maf_init": "clustering"
+  }
+}

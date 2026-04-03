@@ -1,0 +1,43 @@
+22:11:56 [INFO] Dataset: breast-cancer-wisconsin (clustering MAF init)
+22:12:00 [INFO]   Clustering: KMeans fitted, distance_norm computed
+22:12:00 [INFO]   distance_norm range: [-0.010, 1.000], mean=0.668
+22:12:00 [INFO]   Train: (478, 9), Test: (205, 9), Features: 9
+22:12:00 [INFO] ============================================================
+22:12:00 [INFO] E1: Rule Source Comparison (clustering init)
+22:12:00 [INFO] ============================================================
+22:12:01 [INFO]   E1_single_feature: training 27 rules (27 base + 0 mined)...
+22:12:14 [INFO]   E1_single_feature: acc=0.981 f1=0.972 auc=0.995 rules=27 time=13.8s
+22:12:32 [INFO]   E1_skope_rules: training 127 rules (27 base + 100 mined)...
+22:12:43 [INFO]   E1_skope_rules: acc=0.985 f1=0.980 auc=0.993 rules=127 time=24.7s
+22:12:46 [INFO]   E1_ripper: training 38 rules (27 base + 11 mined)...
+22:13:12 [INFO]   E1_ripper: acc=0.966 f1=0.950 auc=0.995 rules=38 time=28.2s
+22:13:16 [INFO]   E1_decision_tree: training 39 rules (27 base + 12 mined)...
+22:13:34 [INFO]   E1_decision_tree: acc=0.976 f1=0.966 auc=0.993 rules=39 time=20.4s
+22:13:34 [INFO] ============================================================
+22:13:34 [INFO] E2: Iterative Uncertainty-Guided Refinement (clustering init)
+22:13:34 [INFO] ============================================================
+22:13:34 [INFO]   Refiner with SkopeRules (cap=81 total rules)...
+22:14:39 [INFO]   SkopeRules: acc=0.981 f1=0.972 rules=27->81 (2 iters) time=63.8s
+22:14:39 [INFO]   Refiner with DecisionTree (cap=81 total rules)...
+22:14:55 [INFO]   DecisionTree: acc=0.971 f1=0.958 rules=27->81 (3 iters) time=15.1s
+22:14:55 [INFO] ============================================================
+22:14:55 [INFO] E3: Multi-Source Rule Ensemble (clustering init)
+22:14:55 [INFO] ============================================================
+22:15:01 [INFO]   single_source: acc=0.981 f1=0.972 rules=27 time=6.3s
+22:15:01 [INFO]   Multi-source ensemble...
+22:15:15 [INFO]   multi_source: acc=0.971 f1=0.958 rules=55 sources={'base': 27, 'SkopeRulesMiner': 10, 'RipperMiner': 10, 'DecisionTreeMiner': 8} time=12.7s
+22:15:15 [INFO] 
+22:15:15 [INFO] ========================================================================
+22:15:15 [INFO] SUMMARY (clustering MAF init)
+22:15:15 [INFO] ========================================================================
+22:15:15 [INFO] Method                                 Acc     F1    AUC  Rules   Time
+22:15:15 [INFO] ------------------------------------------------------------------------
+22:15:15 [INFO]   E1 single_feature                  0.981  0.972  0.995     27  13.8s
+22:15:15 [INFO]   E1 skope_rules                     0.985  0.980  0.993    127  24.7s
+22:15:15 [INFO]   E1 ripper                          0.966  0.950  0.995     38  28.2s
+22:15:15 [INFO]   E1 decision_tree                   0.976  0.966  0.993     39  20.4s
+22:15:15 [INFO]   E2 SkopeRules                      0.981  0.972  0.994     81  63.8s
+22:15:15 [INFO]   E2 DecisionTree                    0.971  0.958  0.994     81  15.1s
+22:15:15 [INFO]   E3 single_source                   0.981  0.972  0.995     27   6.3s
+22:15:15 [INFO]   E3 multi_source                    0.971  0.958  0.995     55  12.7s
+22:15:15 [INFO] ========================================================================

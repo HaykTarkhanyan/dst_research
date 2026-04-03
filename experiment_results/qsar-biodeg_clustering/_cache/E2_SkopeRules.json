@@ -1,0 +1,20 @@
+{
+  "accuracy": 0.8517,
+  "f1": 0.8851,
+  "precision": 0.9095,
+  "recall": 0.8619,
+  "roc_auc": 0.9279,
+  "initial_rules": 125,
+  "final_rules": 128,
+  "iterations": 1,
+  "history": [
+    {
+      "iteration": 1,
+      "weak_rules_found": 10,
+      "rules_mined": 3,
+      "total_rules": 128
+    }
+  ],
+  "training_time": 39.81,
+  "maf_init": "clustering"
+}

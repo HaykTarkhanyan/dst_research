@@ -1,0 +1,28 @@
+{
+  "single_source": {
+    "accuracy": 0.7229,
+    "f1": 0.6,
+    "precision": 0.6076,
+    "recall": 0.5926,
+    "roc_auc": 0.7815,
+    "n_rules": 24,
+    "training_time": 8.37,
+    "maf_init": "clustering"
+  },
+  "multi_source": {
+    "accuracy": 0.7143,
+    "f1": 0.5714,
+    "precision": 0.6027,
+    "recall": 0.5432,
+    "roc_auc": 0.75,
+    "n_rules": 50,
+    "rule_sources": {
+      "base": 24,
+      "SkopeRulesMiner": 10,
+      "RipperMiner": 8,
+      "DecisionTreeMiner": 8
+    },
+    "training_time": 25.2,
+    "maf_init": "clustering"
+  }
+}

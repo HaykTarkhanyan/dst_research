@@ -1,0 +1,16 @@
+{
+  "accuracy": 0.7972,
+  "f1": 0.8578,
+  "precision": 0.85,
+  "recall": 0.8656,
+  "roc_auc": 0.8705,
+  "n_rules": 43,
+  "rule_sources": {
+    "base": 15,
+    "SkopeRulesMiner": 10,
+    "RipperMiner": 10,
+    "DecisionTreeMiner": 8
+  },
+  "training_time": 24.74,
+  "maf_init": "clustering"
+}

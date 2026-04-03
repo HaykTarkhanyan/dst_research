@@ -1,0 +1,1526 @@
+[
+  {
+    "rule_idx": 0,
+    "caption": "clump_thickness < -0.431",
+    "uncertainty_mass": 0.154203,
+    "max_class_mass": 0.692217,
+    "confidence_score": 0.585475,
+    "masses": [
+      0.692217,
+      0.153579,
+      0.154203
+    ]
+  },
+  {
+    "rule_idx": 1,
+    "caption": "-0.431 < clump_thickness < 0.431",
+    "uncertainty_mass": 0.261126,
+    "max_class_mass": 0.474663,
+    "confidence_score": 0.350716,
+    "masses": [
+      0.474663,
+      0.264211,
+      0.261126
+    ]
+  },
+  {
+    "rule_idx": 2,
+    "caption": "clump_thickness > 0.431",
+    "uncertainty_mass": 0.345337,
+    "max_class_mass": 0.411704,
+    "confidence_score": 0.269528,
+    "masses": [
+      0.242959,
+      0.411704,
+      0.345337
+    ]
+  },
+  {
+    "rule_idx": 3,
+    "caption": "size_uniformity < -0.431",
+    "uncertainty_mass": 0.159891,
+    "max_class_mass": 0.68258,
+    "confidence_score": 0.573442,
+    "masses": [
+      0.68258,
+      0.157529,
+      0.159891
+    ]
+  },
+  {
+    "rule_idx": 4,
+    "caption": "-0.431 < size_uniformity < 0.431",
+    "uncertainty_mass": 0.349138,
+    "max_class_mass": 0.378919,
+    "confidence_score": 0.246624,
+    "masses": [
+      0.271943,
+      0.378919,
+      0.349138
+    ]
+  },
+  {
+    "rule_idx": 5,
+    "caption": "size_uniformity > 0.431",
+    "uncertainty_mass": 0.316063,
+    "max_class_mass": 0.458025,
+    "confidence_score": 0.31326,
+    "masses": [
+      0.225913,
+      0.458025,
+      0.316063
+    ]
+  },
+  {
+    "rule_idx": 6,
+    "caption": "shape_uniformity < -0.431",
+    "uncertainty_mass": 0.12567,
+    "max_class_mass": 0.792874,
+    "confidence_score": 0.693233,
+    "masses": [
+      0.792874,
+      0.081457,
+      0.12567
+    ]
+  },
+  {
+    "rule_idx": 7,
+    "caption": "-0.431 < shape_uniformity < 0.431",
+    "uncertainty_mass": 0.32954,
+    "max_class_mass": 0.336334,
+    "confidence_score": 0.225498,
+    "masses": [
+      0.334126,
+      0.336334,
+      0.32954
+    ]
+  },
+  {
+    "rule_idx": 8,
+    "caption": "shape_uniformity > 0.431",
+    "uncertainty_mass": 0.314294,
+    "max_class_mass": 0.456778,
+    "confidence_score": 0.313215,
+    "masses": [
+      0.228929,
+      0.456778,
+      0.314294
+    ]
+  },
+  {
+    "rule_idx": 9,
+    "caption": "marginal_adhesion < -0.431",
+    "uncertainty_mass": 0.200911,
+    "max_class_mass": 0.595852,
+    "confidence_score": 0.476139,
+    "masses": [
+      0.595852,
+      0.203237,
+      0.200911
+    ]
+  },
+  {
+    "rule_idx": 10,
+    "caption": "-0.431 < marginal_adhesion < 0.431",
+    "uncertainty_mass": 0.333396,
+    "max_class_mass": 0.338003,
+    "confidence_score": 0.225314,
+    "masses": [
+      0.338003,
+      0.328601,
+      0.333396
+    ]
+  },
+  {
+    "rule_idx": 11,
+    "caption": "marginal_adhesion > 0.431",
+    "uncertainty_mass": 0.319162,
+    "max_class_mass": 0.449948,
+    "confidence_score": 0.306342,
+    "masses": [
+      0.23089,
+      0.449948,
+      0.319162
+    ]
+  },
+  {
+    "rule_idx": 12,
+    "caption": "epithelial_size < -0.431",
+    "uncertainty_mass": 0.179761,
+    "max_class_mass": 0.638558,
+    "confidence_score": 0.52377,
+    "masses": [
+      0.638558,
+      0.181681,
+      0.179761
+    ]
+  },
+  {
+    "rule_idx": 13,
+    "caption": "-0.431 < epithelial_size < 0.431",
+    "uncertainty_mass": 0.351968,
+    "max_class_mass": 0.387674,
+    "confidence_score": 0.251225,
+    "masses": [
+      0.260358,
+      0.387674,
+      0.351968
+    ]
+  },
+  {
+    "rule_idx": 14,
+    "caption": "epithelial_size > 0.431",
+    "uncertainty_mass": 0.356708,
+    "max_class_mass": 0.400884,
+    "confidence_score": 0.257886,
+    "masses": [
+      0.242408,
+      0.400884,
+      0.356708
+    ]
+  },
+  {
+    "rule_idx": 15,
+    "caption": "bare_nucleoli < -0.431",
+    "uncertainty_mass": 0.184672,
+    "max_class_mass": 0.629007,
+    "confidence_score": 0.512847,
+    "masses": [
+      0.629007,
+      0.186321,
+      0.184672
+    ]
+  },
+  {
+    "rule_idx": 16,
+    "caption": "-0.431 < bare_nucleoli < 0.431",
+    "uncertainty_mass": 0.454665,
+    "max_class_mass": 0.287709,
+    "confidence_score": 0.156898,
+    "masses": [
+      0.287709,
+      0.257626,
+      0.454665
+    ]
+  },
+  {
+    "rule_idx": 17,
+    "caption": "bare_nucleoli > 0.431",
+    "uncertainty_mass": 0.315264,
+    "max_class_mass": 0.452484,
+    "confidence_score": 0.309832,
+    "masses": [
+      0.232252,
+      0.452484,
+      0.315264
+    ]
+  },
+  {
+    "rule_idx": 18,
+    "caption": "bland_chromatin < -0.431",
+    "uncertainty_mass": 0.179014,
+    "max_class_mass": 0.639247,
+    "confidence_score": 0.524813,
+    "masses": [
+      0.639247,
+      0.181739,
+      0.179014
+    ]
+  },
+  {
+    "rule_idx": 19,
+    "caption": "-0.431 < bland_chromatin < 0.431",
+    "uncertainty_mass": 0.302028,
+    "max_class_mass": 0.391764,
+    "confidence_score": 0.27344,
+    "masses": [
+      0.391764,
+      0.306208,
+      0.302028
+    ]
+  },
+  {
+    "rule_idx": 20,
+    "caption": "bland_chromatin > 0.431",
+    "uncertainty_mass": 0.318674,
+    "max_class_mass": 0.449339,
+    "confidence_score": 0.306146,
+    "masses": [
+      0.231987,
+      0.449339,
+      0.318674
+    ]
+  },
+  {
+    "rule_idx": 21,
+    "caption": "normal_nucleoli < -0.431",
+    "uncertainty_mass": 0.195263,
+    "max_class_mass": 0.606821,
+    "confidence_score": 0.488331,
+    "masses": [
+      0.606821,
+      0.197915,
+      0.195263
+    ]
+  },
+  {
+    "rule_idx": 22,
+    "caption": "-0.431 < normal_nucleoli < 0.431",
+    "uncertainty_mass": 0.421572,
+    "max_class_mass": 0.316203,
+    "confidence_score": 0.1829,
+    "masses": [
+      0.262225,
+      0.316203,
+      0.421572
+    ]
+  },
+  {
+    "rule_idx": 23,
+    "caption": "normal_nucleoli > 0.431",
+    "uncertainty_mass": 0.325309,
+    "max_class_mass": 0.430227,
+    "confidence_score": 0.29027,
+    "masses": [
+      0.244464,
+      0.430227,
+      0.325309
+    ]
+  },
+  {
+    "rule_idx": 24,
+    "caption": "mitoses < -0.431",
+    "uncertainty_mass": 1.0,
+    "max_class_mass": 0.0,
+    "confidence_score": 0.0,
+    "masses": [
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  {
+    "rule_idx": 25,
+    "caption": "-0.431 < mitoses < 0.431",
+    "uncertainty_mass": 0.253771,
+    "max_class_mass": 0.489818,
+    "confidence_score": 0.365516,
+    "masses": [
+      0.489818,
+      0.256412,
+      0.253771
+    ]
+  },
+  {
+    "rule_idx": 26,
+    "caption": "mitoses > 0.431",
+    "uncertainty_mass": 0.379302,
+    "max_class_mass": 0.373212,
+    "confidence_score": 0.231652,
+    "masses": [
+      0.247486,
+      0.373212,
+      0.379302
+    ]
+  },
+  {
+    "rule_idx": 27,
+    "caption": "bare_nucleoli > 0.57036 and shape_uniformity > -0.23363",
+    "uncertainty_mass": 0.30163,
+    "max_class_mass": 0.477486,
+    "confidence_score": 0.333461,
+    "masses": [
+      0.220884,
+      0.477486,
+      0.30163
+    ]
+  },
+  {
+    "rule_idx": 28,
+    "caption": "bland_chromatin > 0.45494 and size_uniformity > 0.4636",
+    "uncertainty_mass": 0.297012,
+    "max_class_mass": 0.489959,
+    "confidence_score": 0.344435,
+    "masses": [
+      0.21303,
+      0.489959,
+      0.297012
+    ]
+  },
+  {
+    "rule_idx": 29,
+    "caption": "bland_chromatin > 0.45494 and shape_uniformity > 0.4515",
+    "uncertainty_mass": 0.292361,
+    "max_class_mass": 0.496773,
+    "confidence_score": 0.351536,
+    "masses": [
+      0.210866,
+      0.496773,
+      0.292361
+    ]
+  },
+  {
+    "rule_idx": 30,
+    "caption": "bare_nucleoli <= 0.57036 and bare_nucleoli > -0.54584 and shape_uniformity > -0.23363",
+    "uncertainty_mass": 0.356108,
+    "max_class_mass": 0.39946,
+    "confidence_score": 0.257209,
+    "masses": [
+      0.244432,
+      0.39946,
+      0.356108
+    ]
+  },
+  {
+    "rule_idx": 31,
+    "caption": "bare_nucleoli > -0.54584 and size_uniformity <= 0.4636 and size_uniformity > -0.20187",
+    "uncertainty_mass": 0.357351,
+    "max_class_mass": 0.389686,
+    "confidence_score": 0.250431,
+    "masses": [
+      0.252963,
+      0.389686,
+      0.357351
+    ]
+  },
+  {
+    "rule_idx": 32,
+    "caption": "bare_nucleoli > -0.54584 and clump_thickness <= -0.01013 and shape_uniformity > 0.10893",
+    "uncertainty_mass": 0.304108,
+    "max_class_mass": 0.448362,
+    "confidence_score": 0.312012,
+    "masses": [
+      0.24753,
+      0.448362,
+      0.304108
+    ]
+  },
+  {
+    "rule_idx": 33,
+    "caption": "clump_thickness > 0.50859 and shape_uniformity <= 0.4515 and shape_uniformity > 0.10893",
+    "uncertainty_mass": 0.320027,
+    "max_class_mass": 0.459022,
+    "confidence_score": 0.312122,
+    "masses": [
+      0.220952,
+      0.459022,
+      0.320027
+    ]
+  },
+  {
+    "rule_idx": 34,
+    "caption": "bland_chromatin <= 0.45494 and mitoses > -0.06899 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.422144,
+    "max_class_mass": 0.321886,
+    "confidence_score": 0.186004,
+    "masses": [
+      0.25597,
+      0.321886,
+      0.422144
+    ]
+  },
+  {
+    "rule_idx": 35,
+    "caption": "bare_nucleoli <= 0.01226 and epithelial_size > 0.11193 and marginal_adhesion > 0.28955",
+    "uncertainty_mass": 0.431029,
+    "max_class_mass": 0.324042,
+    "confidence_score": 0.184371,
+    "masses": [
+      0.244929,
+      0.324042,
+      0.431029
+    ]
+  },
+  {
+    "rule_idx": 36,
+    "caption": "bare_nucleoli > 0.01226 and bland_chromatin > -0.8045 and normal_nucleoli <= -0.10501",
+    "uncertainty_mass": 0.348608,
+    "max_class_mass": 0.400852,
+    "confidence_score": 0.261112,
+    "masses": [
+      0.25054,
+      0.400852,
+      0.348608
+    ]
+  },
+  {
+    "rule_idx": 37,
+    "caption": "bare_nucleoli <= 1.4075 and epithelial_size <= 0.99626 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.331821,
+    "max_class_mass": 0.434084,
+    "confidence_score": 0.290046,
+    "masses": [
+      0.234095,
+      0.434084,
+      0.331821
+    ]
+  },
+  {
+    "rule_idx": 38,
+    "caption": "normal_nucleoli <= -0.10501 and size_uniformity > 0.4636",
+    "uncertainty_mass": 0.368207,
+    "max_class_mass": 0.401318,
+    "confidence_score": 0.25355,
+    "masses": [
+      0.230475,
+      0.401318,
+      0.368207
+    ]
+  },
+  {
+    "rule_idx": 39,
+    "caption": "bare_nucleoli > 0.57036 and clump_thickness > -0.87466 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.333909,
+    "max_class_mass": 0.439999,
+    "confidence_score": 0.293079,
+    "masses": [
+      0.226092,
+      0.439999,
+      0.333909
+    ]
+  },
+  {
+    "rule_idx": 40,
+    "caption": "bare_nucleoli > 0.57036 and clump_thickness > -0.70176 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.333909,
+    "max_class_mass": 0.439999,
+    "confidence_score": 0.293079,
+    "masses": [
+      0.226092,
+      0.439999,
+      0.333909
+    ]
+  },
+  {
+    "rule_idx": 41,
+    "caption": "bare_nucleoli > -0.26679 and bland_chromatin > 0.45494 and shape_uniformity <= 0.10893",
+    "uncertainty_mass": 0.370643,
+    "max_class_mass": 0.394261,
+    "confidence_score": 0.248131,
+    "masses": [
+      0.235096,
+      0.394261,
+      0.370643
+    ]
+  },
+  {
+    "rule_idx": 42,
+    "caption": "bare_nucleoli > 0.70988 and clump_thickness > -0.70176 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.333909,
+    "max_class_mass": 0.439999,
+    "confidence_score": 0.293079,
+    "masses": [
+      0.226092,
+      0.439999,
+      0.333909
+    ]
+  },
+  {
+    "rule_idx": 43,
+    "caption": "bare_nucleoli > -0.26679 and shape_uniformity > -0.23363 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.327835,
+    "max_class_mass": 0.448631,
+    "confidence_score": 0.301554,
+    "masses": [
+      0.223534,
+      0.448631,
+      0.327835
+    ]
+  },
+  {
+    "rule_idx": 44,
+    "caption": "bare_nucleoli > -0.54584 and normal_nucleoli > -0.10501 and shape_uniformity <= 0.10893",
+    "uncertainty_mass": 0.330397,
+    "max_class_mass": 0.440637,
+    "confidence_score": 0.295052,
+    "masses": [
+      0.228966,
+      0.440637,
+      0.330397
+    ]
+  },
+  {
+    "rule_idx": 45,
+    "caption": "clump_thickness > -0.01013 and normal_nucleoli > -0.10501 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.332471,
+    "max_class_mass": 0.443904,
+    "confidence_score": 0.296319,
+    "masses": [
+      0.223625,
+      0.443904,
+      0.332471
+    ]
+  },
+  {
+    "rule_idx": 46,
+    "caption": "bare_nucleoli > 0.57036 and clump_thickness > -0.52885 and epithelial_size <= -0.33024",
+    "uncertainty_mass": 0.358236,
+    "max_class_mass": 0.408073,
+    "confidence_score": 0.261887,
+    "masses": [
+      0.233691,
+      0.408073,
+      0.358236
+    ]
+  },
+  {
+    "rule_idx": 47,
+    "caption": "bare_nucleoli > 0.01226 and shape_uniformity <= 0.10893 and shape_uniformity > -0.5762",
+    "uncertainty_mass": 0.329296,
+    "max_class_mass": 0.442615,
+    "confidence_score": 0.296863,
+    "masses": [
+      0.228089,
+      0.442615,
+      0.329296
+    ]
+  },
+  {
+    "rule_idx": 48,
+    "caption": "clump_thickness > 0.6815 and shape_uniformity > 0.10893 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.333741,
+    "max_class_mass": 0.422705,
+    "confidence_score": 0.281631,
+    "masses": [
+      0.243555,
+      0.422705,
+      0.333741
+    ]
+  },
+  {
+    "rule_idx": 49,
+    "caption": "bland_chromatin > 0.03513 and epithelial_size > -0.33024 and shape_uniformity <= 0.10893",
+    "uncertainty_mass": 0.403819,
+    "max_class_mass": 0.34852,
+    "confidence_score": 0.207781,
+    "masses": [
+      0.247661,
+      0.34852,
+      0.403819
+    ]
+  },
+  {
+    "rule_idx": 50,
+    "caption": "normal_nucleoli > 1.23355 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.479888,
+    "max_class_mass": 0.293335,
+    "confidence_score": 0.152567,
+    "masses": [
+      0.293335,
+      0.226777,
+      0.479888
+    ]
+  },
+  {
+    "rule_idx": 51,
+    "caption": "marginal_adhesion <= -0.44665 and size_uniformity > 0.4636",
+    "uncertainty_mass": 0.477934,
+    "max_class_mass": 0.276715,
+    "confidence_score": 0.144463,
+    "masses": [
+      0.276715,
+      0.245351,
+      0.477934
+    ]
+  },
+  {
+    "rule_idx": 52,
+    "caption": "bare_nucleoli > 0.01226 and clump_thickness > -0.35594 and size_uniformity <= -0.20187",
+    "uncertainty_mass": 0.328185,
+    "max_class_mass": 0.460848,
+    "confidence_score": 0.309604,
+    "masses": [
+      0.210967,
+      0.460848,
+      0.328185
+    ]
+  },
+  {
+    "rule_idx": 53,
+    "caption": "bare_nucleoli <= 0.01226 and clump_thickness > 1.37313 and epithelial_size <= 0.11193",
+    "uncertainty_mass": 0.47455,
+    "max_class_mass": 0.273662,
+    "confidence_score": 0.143795,
+    "masses": [
+      0.251788,
+      0.273662,
+      0.47455
+    ]
+  },
+  {
+    "rule_idx": 54,
+    "caption": "bare_nucleoli > 0.57036 and epithelial_size <= -0.33024 and shape_uniformity > -0.5762",
+    "uncertainty_mass": 0.332052,
+    "max_class_mass": 0.435675,
+    "confidence_score": 0.291008,
+    "masses": [
+      0.232272,
+      0.435675,
+      0.332052
+    ]
+  },
+  {
+    "rule_idx": 55,
+    "caption": "clump_thickness <= -0.01013 and size_uniformity <= 0.4636 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.440068,
+    "max_class_mass": 0.36481,
+    "confidence_score": 0.204269,
+    "masses": [
+      0.195122,
+      0.36481,
+      0.440068
+    ]
+  },
+  {
+    "rule_idx": 56,
+    "caption": "bare_nucleoli <= -0.26679 and epithelial_size > 0.11193 and marginal_adhesion > 0.28955",
+    "uncertainty_mass": 0.47522,
+    "max_class_mass": 0.270093,
+    "confidence_score": 0.14174,
+    "masses": [
+      0.270093,
+      0.254687,
+      0.47522
+    ]
+  },
+  {
+    "rule_idx": 57,
+    "caption": "mitoses > -0.06899 and shape_uniformity <= -0.23363 and size_uniformity > -0.20187",
+    "uncertainty_mass": 0.472219,
+    "max_class_mass": 0.270859,
+    "confidence_score": 0.142954,
+    "masses": [
+      0.270859,
+      0.256922,
+      0.472219
+    ]
+  },
+  {
+    "rule_idx": 58,
+    "caption": "bland_chromatin <= -0.38468 and clump_thickness > 0.6815 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.361613,
+    "max_class_mass": 0.47259,
+    "confidence_score": 0.301695,
+    "masses": [
+      0.165797,
+      0.47259,
+      0.361613
+    ]
+  },
+  {
+    "rule_idx": 59,
+    "caption": "bland_chromatin > -0.38468 and clump_thickness > 0.6815 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.414479,
+    "max_class_mass": 0.335516,
+    "confidence_score": 0.196452,
+    "masses": [
+      0.250006,
+      0.335516,
+      0.414479
+    ]
+  },
+  {
+    "rule_idx": 60,
+    "caption": "mitoses > -0.06899 and normal_nucleoli <= 0.22963 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.466953,
+    "max_class_mass": 0.269615,
+    "confidence_score": 0.143717,
+    "masses": [
+      0.263433,
+      0.269615,
+      0.466953
+    ]
+  },
+  {
+    "rule_idx": 61,
+    "caption": "shape_uniformity > -0.23363 and size_uniformity > 0.4636",
+    "uncertainty_mass": 0.314478,
+    "max_class_mass": 0.461256,
+    "confidence_score": 0.316201,
+    "masses": [
+      0.224266,
+      0.461256,
+      0.314478
+    ]
+  },
+  {
+    "rule_idx": 62,
+    "caption": "marginal_adhesion > -0.44665 and size_uniformity > 0.4636",
+    "uncertainty_mass": 0.305762,
+    "max_class_mass": 0.473548,
+    "confidence_score": 0.328755,
+    "masses": [
+      0.220691,
+      0.473548,
+      0.305762
+    ]
+  },
+  {
+    "rule_idx": 63,
+    "caption": "bare_nucleoli > -0.26679 and size_uniformity <= 0.4636 and size_uniformity > -0.20187",
+    "uncertainty_mass": 0.326893,
+    "max_class_mass": 0.4286,
+    "confidence_score": 0.288494,
+    "masses": [
+      0.244506,
+      0.4286,
+      0.326893
+    ]
+  },
+  {
+    "rule_idx": 64,
+    "caption": "bland_chromatin <= 0.45494 and size_uniformity > 0.4636",
+    "uncertainty_mass": 0.39489,
+    "max_class_mass": 0.356395,
+    "confidence_score": 0.215658,
+    "masses": [
+      0.248716,
+      0.356395,
+      0.39489
+    ]
+  },
+  {
+    "rule_idx": 65,
+    "caption": "bare_nucleoli > -0.54584 and size_uniformity > 0.4636",
+    "uncertainty_mass": 0.304625,
+    "max_class_mass": 0.470504,
+    "confidence_score": 0.327177,
+    "masses": [
+      0.224871,
+      0.470504,
+      0.304625
+    ]
+  },
+  {
+    "rule_idx": 66,
+    "caption": "bare_nucleoli > 0.29131 and shape_uniformity > 0.4515",
+    "uncertainty_mass": 0.292111,
+    "max_class_mass": 0.491947,
+    "confidence_score": 0.348244,
+    "masses": [
+      0.215943,
+      0.491947,
+      0.292111
+    ]
+  },
+  {
+    "rule_idx": 67,
+    "caption": "bare_nucleoli > 0.01226 and bland_chromatin > -0.8045 and normal_nucleoli > -0.10501",
+    "uncertainty_mass": 0.302647,
+    "max_class_mass": 0.477129,
+    "confidence_score": 0.332728,
+    "masses": [
+      0.220225,
+      0.477129,
+      0.302647
+    ]
+  },
+  {
+    "rule_idx": 68,
+    "caption": "bare_nucleoli > -0.26679 and bland_chromatin > -0.8045 and clump_thickness > 0.33569",
+    "uncertainty_mass": 0.311688,
+    "max_class_mass": 0.464785,
+    "confidence_score": 0.319917,
+    "masses": [
+      0.223527,
+      0.464785,
+      0.311688
+    ]
+  },
+  {
+    "rule_idx": 69,
+    "caption": "normal_nucleoli > -0.10501 and size_uniformity > 0.4636",
+    "uncertainty_mass": 0.306972,
+    "max_class_mass": 0.467489,
+    "confidence_score": 0.323983,
+    "masses": [
+      0.225539,
+      0.467489,
+      0.306972
+    ]
+  },
+  {
+    "rule_idx": 70,
+    "caption": "size_uniformity > 0.4636",
+    "uncertainty_mass": 0.316063,
+    "max_class_mass": 0.458025,
+    "confidence_score": 0.31326,
+    "masses": [
+      0.225913,
+      0.458025,
+      0.316063
+    ]
+  },
+  {
+    "rule_idx": 71,
+    "caption": "bare_nucleoli > -0.26679 and clump_thickness > -0.35594 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.352556,
+    "max_class_mass": 0.41949,
+    "confidence_score": 0.271596,
+    "masses": [
+      0.227955,
+      0.41949,
+      0.352556
+    ]
+  },
+  {
+    "rule_idx": 72,
+    "caption": "bare_nucleoli > -0.54584 and bland_chromatin > -0.38468 and epithelial_size > -0.33024",
+    "uncertainty_mass": 0.31194,
+    "max_class_mass": 0.456486,
+    "confidence_score": 0.31409,
+    "masses": [
+      0.231574,
+      0.456486,
+      0.31194
+    ]
+  },
+  {
+    "rule_idx": 73,
+    "caption": "bare_nucleoli > 1.4075 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.299962,
+    "max_class_mass": 0.477229,
+    "confidence_score": 0.334079,
+    "masses": [
+      0.222808,
+      0.477229,
+      0.299962
+    ]
+  },
+  {
+    "rule_idx": 74,
+    "caption": "bare_nucleoli > 0.57036 and bland_chromatin > -0.8045 and shape_uniformity > 0.10893",
+    "uncertainty_mass": 0.299949,
+    "max_class_mass": 0.478206,
+    "confidence_score": 0.334768,
+    "masses": [
+      0.221845,
+      0.478206,
+      0.299949
+    ]
+  },
+  {
+    "rule_idx": 75,
+    "caption": "bland_chromatin <= 0.45494 and mitoses <= -0.06899 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.378018,
+    "max_class_mass": 0.371158,
+    "confidence_score": 0.230854,
+    "masses": [
+      0.250824,
+      0.371158,
+      0.378018
+    ]
+  },
+  {
+    "rule_idx": 76,
+    "caption": "bare_nucleoli > 0.01226 and clump_thickness > -0.35594 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.335023,
+    "max_class_mass": 0.436209,
+    "confidence_score": 0.290069,
+    "masses": [
+      0.228767,
+      0.436209,
+      0.335023
+    ]
+  },
+  {
+    "rule_idx": 77,
+    "caption": "epithelial_size <= 1.43843 and size_uniformity <= 0.4636 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.324609,
+    "max_class_mass": 0.445307,
+    "confidence_score": 0.300756,
+    "masses": [
+      0.230083,
+      0.445307,
+      0.324609
+    ]
+  },
+  {
+    "rule_idx": 78,
+    "caption": "bland_chromatin > 0.45494 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.299849,
+    "max_class_mass": 0.482862,
+    "confidence_score": 0.338076,
+    "masses": [
+      0.21729,
+      0.482862,
+      0.299849
+    ]
+  },
+  {
+    "rule_idx": 79,
+    "caption": "bland_chromatin <= 0.45494 and shape_uniformity > 0.4515",
+    "uncertainty_mass": 0.38194,
+    "max_class_mass": 0.365536,
+    "confidence_score": 0.225923,
+    "masses": [
+      0.252524,
+      0.365536,
+      0.38194
+    ]
+  },
+  {
+    "rule_idx": 80,
+    "caption": "clump_thickness > 0.6815 and epithelial_size > -0.33024 and shape_uniformity > -0.23363",
+    "uncertainty_mass": 0.316509,
+    "max_class_mass": 0.455862,
+    "confidence_score": 0.311577,
+    "masses": [
+      0.227629,
+      0.455862,
+      0.316509
+    ]
+  },
+  {
+    "rule_idx": 81,
+    "caption": "bare_nucleoli > -0.54584 and clump_thickness > -0.01013 and shape_uniformity > 0.10893",
+    "uncertainty_mass": 0.311201,
+    "max_class_mass": 0.461901,
+    "confidence_score": 0.318157,
+    "masses": [
+      0.226898,
+      0.461901,
+      0.311201
+    ]
+  },
+  {
+    "rule_idx": 82,
+    "caption": "bare_nucleoli > 1.12845 and shape_uniformity <= 0.4515 and shape_uniformity > 0.10893",
+    "uncertainty_mass": 0.324283,
+    "max_class_mass": 0.438377,
+    "confidence_score": 0.296219,
+    "masses": [
+      0.237341,
+      0.438377,
+      0.324283
+    ]
+  },
+  {
+    "rule_idx": 83,
+    "caption": "bare_nucleoli > -0.26679 and bland_chromatin > -0.8045 and clump_thickness <= 0.33569",
+    "uncertainty_mass": 0.330969,
+    "max_class_mass": 0.416647,
+    "confidence_score": 0.27875,
+    "masses": [
+      0.252383,
+      0.416647,
+      0.330969
+    ]
+  },
+  {
+    "rule_idx": 84,
+    "caption": "bare_nucleoli <= 0.29131 and shape_uniformity > 0.4515",
+    "uncertainty_mass": 0.425716,
+    "max_class_mass": 0.319166,
+    "confidence_score": 0.183292,
+    "masses": [
+      0.255118,
+      0.319166,
+      0.425716
+    ]
+  },
+  {
+    "rule_idx": 85,
+    "caption": "bare_nucleoli > -0.54584 and size_uniformity <= 0.4636 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.327231,
+    "max_class_mass": 0.42682,
+    "confidence_score": 0.287151,
+    "masses": [
+      0.245948,
+      0.42682,
+      0.327231
+    ]
+  },
+  {
+    "rule_idx": 86,
+    "caption": "bare_nucleoli > 0.57036 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.355742,
+    "max_class_mass": 0.413161,
+    "confidence_score": 0.266182,
+    "masses": [
+      0.231097,
+      0.413161,
+      0.355742
+    ]
+  },
+  {
+    "rule_idx": 87,
+    "caption": "bare_nucleoli > 0.70988 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.355742,
+    "max_class_mass": 0.413161,
+    "confidence_score": 0.266182,
+    "masses": [
+      0.231097,
+      0.413161,
+      0.355742
+    ]
+  },
+  {
+    "rule_idx": 88,
+    "caption": "size_uniformity <= 0.4636 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.348676,
+    "max_class_mass": 0.396452,
+    "confidence_score": 0.258219,
+    "masses": [
+      0.254871,
+      0.396452,
+      0.348676
+    ]
+  },
+  {
+    "rule_idx": 89,
+    "caption": "bare_nucleoli <= 0.57036 and bland_chromatin > -0.8045 and shape_uniformity > 0.10893",
+    "uncertainty_mass": 0.418257,
+    "max_class_mass": 0.330355,
+    "confidence_score": 0.192182,
+    "masses": [
+      0.251387,
+      0.330355,
+      0.418257
+    ]
+  },
+  {
+    "rule_idx": 90,
+    "caption": "clump_thickness <= 0.6815 and epithelial_size > -0.33024 and shape_uniformity > -0.23363",
+    "uncertainty_mass": 0.330485,
+    "max_class_mass": 0.423808,
+    "confidence_score": 0.283746,
+    "masses": [
+      0.245707,
+      0.423808,
+      0.330485
+    ]
+  },
+  {
+    "rule_idx": 91,
+    "caption": "bare_nucleoli > 1.12845 and size_uniformity <= 0.4636 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.312456,
+    "max_class_mass": 0.45814,
+    "confidence_score": 0.314991,
+    "masses": [
+      0.229403,
+      0.45814,
+      0.312456
+    ]
+  },
+  {
+    "rule_idx": 92,
+    "caption": "clump_thickness > 0.50859 and size_uniformity <= 0.4636 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.313364,
+    "max_class_mass": 0.464777,
+    "confidence_score": 0.319132,
+    "masses": [
+      0.221859,
+      0.464777,
+      0.313364
+    ]
+  },
+  {
+    "rule_idx": 93,
+    "caption": "bare_nucleoli <= -0.54584 and marginal_adhesion > 0.28955 and size_uniformity > -0.20187",
+    "uncertainty_mass": 0.492909,
+    "max_class_mass": 0.269624,
+    "confidence_score": 0.136724,
+    "masses": [
+      0.269624,
+      0.237468,
+      0.492909
+    ]
+  },
+  {
+    "rule_idx": 94,
+    "caption": "clump_thickness > -0.01013 and size_uniformity <= 0.4636 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.32041,
+    "max_class_mass": 0.441898,
+    "confidence_score": 0.300309,
+    "masses": [
+      0.237693,
+      0.441898,
+      0.32041
+    ]
+  },
+  {
+    "rule_idx": 95,
+    "caption": "bare_nucleoli > -0.54584 and bland_chromatin > 0.03513 and shape_uniformity <= 0.10893",
+    "uncertainty_mass": 0.423189,
+    "max_class_mass": 0.324287,
+    "confidence_score": 0.187052,
+    "masses": [
+      0.252524,
+      0.324287,
+      0.423189
+    ]
+  },
+  {
+    "rule_idx": 96,
+    "caption": "bare_nucleoli <= 1.4075 and epithelial_size > 0.99626 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.37911,
+    "max_class_mass": 0.376297,
+    "confidence_score": 0.233639,
+    "masses": [
+      0.244594,
+      0.376297,
+      0.37911
+    ]
+  },
+  {
+    "rule_idx": 97,
+    "caption": "clump_thickness <= 0.6815 and normal_nucleoli > 0.22963 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.435047,
+    "max_class_mass": 0.301167,
+    "confidence_score": 0.170145,
+    "masses": [
+      0.263786,
+      0.301167,
+      0.435047
+    ]
+  },
+  {
+    "rule_idx": 98,
+    "caption": "bare_nucleoli > 0.57036 and shape_uniformity <= 0.10893",
+    "uncertainty_mass": 0.353311,
+    "max_class_mass": 0.41394,
+    "confidence_score": 0.26769,
+    "masses": [
+      0.23275,
+      0.41394,
+      0.353311
+    ]
+  },
+  {
+    "rule_idx": 99,
+    "caption": "bare_nucleoli <= 0.01226 and epithelial_size > 0.11193 and marginal_adhesion <= 0.28955",
+    "uncertainty_mass": 0.360322,
+    "max_class_mass": 0.461199,
+    "confidence_score": 0.295019,
+    "masses": [
+      0.178479,
+      0.461199,
+      0.360322
+    ]
+  },
+  {
+    "rule_idx": 100,
+    "caption": "bare_nucleoli > 0.57036 and size_uniformity <= -0.20187",
+    "uncertainty_mass": 0.427955,
+    "max_class_mass": 0.341497,
+    "confidence_score": 0.195352,
+    "masses": [
+      0.230548,
+      0.341497,
+      0.427955
+    ]
+  },
+  {
+    "rule_idx": 101,
+    "caption": "bland_chromatin <= 0.45494 and size_uniformity <= 0.4636 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.410901,
+    "max_class_mass": 0.330635,
+    "confidence_score": 0.194777,
+    "masses": [
+      0.258464,
+      0.330635,
+      0.410901
+    ]
+  },
+  {
+    "rule_idx": 102,
+    "caption": "bare_nucleoli <= 0.57036 and bare_nucleoli > 0.01226 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.346622,
+    "max_class_mass": 0.388369,
+    "confidence_score": 0.253752,
+    "masses": [
+      0.265009,
+      0.388369,
+      0.346622
+    ]
+  },
+  {
+    "rule_idx": 103,
+    "caption": "bare_nucleoli <= 0.70988 and clump_thickness > 0.6815 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.466696,
+    "max_class_mass": 0.280831,
+    "confidence_score": 0.149769,
+    "masses": [
+      0.280831,
+      0.252473,
+      0.466696
+    ]
+  },
+  {
+    "rule_idx": 104,
+    "caption": "bare_nucleoli > -0.26679 and size_uniformity <= 0.13087 and size_uniformity > -0.20187",
+    "uncertainty_mass": 0.343235,
+    "max_class_mass": 0.410666,
+    "confidence_score": 0.269711,
+    "masses": [
+      0.246099,
+      0.410666,
+      0.343235
+    ]
+  },
+  {
+    "rule_idx": 105,
+    "caption": "shape_uniformity > -0.23363 and size_uniformity <= 0.4636 and size_uniformity > -0.20187",
+    "uncertainty_mass": 0.387611,
+    "max_class_mass": 0.35588,
+    "confidence_score": 0.217937,
+    "masses": [
+      0.256508,
+      0.35588,
+      0.387611
+    ]
+  },
+  {
+    "rule_idx": 106,
+    "caption": "bare_nucleoli <= -0.54584 and clump_thickness <= 1.54603 and epithelial_size > -0.33024",
+    "uncertainty_mass": 0.337426,
+    "max_class_mass": 0.34186,
+    "confidence_score": 0.226507,
+    "masses": [
+      0.320714,
+      0.34186,
+      0.337426
+    ]
+  },
+  {
+    "rule_idx": 107,
+    "caption": "bare_nucleoli <= 1.12845 and shape_uniformity <= 0.4515 and shape_uniformity > 0.10893",
+    "uncertainty_mass": 0.338708,
+    "max_class_mass": 0.426849,
+    "confidence_score": 0.282272,
+    "masses": [
+      0.234442,
+      0.426849,
+      0.338708
+    ]
+  },
+  {
+    "rule_idx": 108,
+    "caption": "bare_nucleoli <= 1.12845 and size_uniformity <= 0.4636 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.408093,
+    "max_class_mass": 0.302564,
+    "confidence_score": 0.17909,
+    "masses": [
+      0.302564,
+      0.289343,
+      0.408093
+    ]
+  },
+  {
+    "rule_idx": 109,
+    "caption": "bare_nucleoli > -0.26679 and shape_uniformity > -0.5762 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.377095,
+    "max_class_mass": 0.381244,
+    "confidence_score": 0.237479,
+    "masses": [
+      0.241661,
+      0.381244,
+      0.377095
+    ]
+  },
+  {
+    "rule_idx": 110,
+    "caption": "bare_nucleoli <= -0.26679 and epithelial_size > 0.11193 and marginal_adhesion <= 0.28955",
+    "uncertainty_mass": 0.388064,
+    "max_class_mass": 0.489721,
+    "confidence_score": 0.299678,
+    "masses": [
+      0.122216,
+      0.489721,
+      0.388064
+    ]
+  },
+  {
+    "rule_idx": 111,
+    "caption": "bare_nucleoli <= -0.54584 and marginal_adhesion <= 0.28955 and size_uniformity > -0.20187",
+    "uncertainty_mass": 0.292106,
+    "max_class_mass": 0.428415,
+    "confidence_score": 0.303272,
+    "masses": [
+      0.428415,
+      0.279479,
+      0.292106
+    ]
+  },
+  {
+    "rule_idx": 112,
+    "caption": "clump_thickness > 0.6815 and epithelial_size > -0.33024 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.374594,
+    "max_class_mass": 0.381281,
+    "confidence_score": 0.238455,
+    "masses": [
+      0.244125,
+      0.381281,
+      0.374594
+    ]
+  },
+  {
+    "rule_idx": 113,
+    "caption": "bland_chromatin > 0.45494 and size_uniformity <= 0.4636 and size_uniformity > 0.13087",
+    "uncertainty_mass": 0.315332,
+    "max_class_mass": 0.44557,
+    "confidence_score": 0.305067,
+    "masses": [
+      0.239099,
+      0.44557,
+      0.315332
+    ]
+  },
+  {
+    "rule_idx": 114,
+    "caption": "bare_nucleoli > -0.26679 and bland_chromatin <= -0.8045 and mitoses > -0.06899",
+    "uncertainty_mass": 0.397658,
+    "max_class_mass": 0.375137,
+    "confidence_score": 0.225961,
+    "masses": [
+      0.227205,
+      0.375137,
+      0.397658
+    ]
+  },
+  {
+    "rule_idx": 115,
+    "caption": "bare_nucleoli > -0.26679 and shape_uniformity <= -0.23363 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.320217,
+    "max_class_mass": 0.357338,
+    "confidence_score": 0.242913,
+    "masses": [
+      0.357338,
+      0.322445,
+      0.320217
+    ]
+  },
+  {
+    "rule_idx": 116,
+    "caption": "bare_nucleoli <= -0.26679 and size_uniformity <= 0.4636 and size_uniformity > -0.20187",
+    "uncertainty_mass": 0.295251,
+    "max_class_mass": 0.428944,
+    "confidence_score": 0.302298,
+    "masses": [
+      0.428944,
+      0.275805,
+      0.295251
+    ]
+  },
+  {
+    "rule_idx": 117,
+    "caption": "bare_nucleoli <= 0.57036 and bare_nucleoli > -0.26679 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.354672,
+    "max_class_mass": 0.356584,
+    "confidence_score": 0.230114,
+    "masses": [
+      0.288744,
+      0.356584,
+      0.354672
+    ]
+  },
+  {
+    "rule_idx": 118,
+    "caption": "bare_nucleoli > -0.26679 and shape_uniformity <= -0.5762 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.29741,
+    "max_class_mass": 0.405239,
+    "confidence_score": 0.284717,
+    "masses": [
+      0.405239,
+      0.297352,
+      0.29741
+    ]
+  },
+  {
+    "rule_idx": 119,
+    "caption": "bare_nucleoli > 0.01226 and clump_thickness <= -0.35594 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.260866,
+    "max_class_mass": 0.47707,
+    "confidence_score": 0.352619,
+    "masses": [
+      0.47707,
+      0.262064,
+      0.260866
+    ]
+  },
+  {
+    "rule_idx": 120,
+    "caption": "epithelial_size <= 0.33301 and shape_uniformity <= -0.23363 and size_uniformity > -0.20187",
+    "uncertainty_mass": 0.225199,
+    "max_class_mass": 0.578829,
+    "confidence_score": 0.448477,
+    "masses": [
+      0.578829,
+      0.195972,
+      0.225199
+    ]
+  },
+  {
+    "rule_idx": 121,
+    "caption": "clump_thickness <= 0.50859 and shape_uniformity <= 0.4515 and shape_uniformity > 0.10893",
+    "uncertainty_mass": 0.342539,
+    "max_class_mass": 0.383287,
+    "confidence_score": 0.251996,
+    "masses": [
+      0.274175,
+      0.383287,
+      0.342539
+    ]
+  },
+  {
+    "rule_idx": 122,
+    "caption": "bare_nucleoli <= 0.57036 and normal_nucleoli > -0.10501 and shape_uniformity <= 0.10893",
+    "uncertainty_mass": 0.343089,
+    "max_class_mass": 0.442688,
+    "confidence_score": 0.290806,
+    "masses": [
+      0.214223,
+      0.442688,
+      0.343089
+    ]
+  },
+  {
+    "rule_idx": 123,
+    "caption": "bare_nucleoli > 0.29131 and shape_uniformity <= -0.23363 and size_uniformity <= -0.20187",
+    "uncertainty_mass": 0.338971,
+    "max_class_mass": 0.389724,
+    "confidence_score": 0.257619,
+    "masses": [
+      0.271305,
+      0.389724,
+      0.338971
+    ]
+  },
+  {
+    "rule_idx": 124,
+    "caption": "clump_thickness > -0.01013 and shape_uniformity <= -0.23363 and size_uniformity > -0.20187",
+    "uncertainty_mass": 0.499253,
+    "max_class_mass": 0.295628,
+    "confidence_score": 0.148035,
+    "masses": [
+      0.295628,
+      0.205119,
+      0.499253
+    ]
+  },
+  {
+    "rule_idx": 125,
+    "caption": "clump_thickness <= -0.01013 and normal_nucleoli > -0.10501 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.306525,
+    "max_class_mass": 0.40609,
+    "confidence_score": 0.281613,
+    "masses": [
+      0.40609,
+      0.287385,
+      0.306525
+    ]
+  },
+  {
+    "rule_idx": 126,
+    "caption": "normal_nucleoli <= 1.23355 and normal_nucleoli > 0.22963 and size_uniformity <= 0.13087",
+    "uncertainty_mass": 0.322034,
+    "max_class_mass": 0.447324,
+    "confidence_score": 0.30327,
+    "masses": [
+      0.230642,
+      0.447324,
+      0.322034
+    ]
+  }
+]

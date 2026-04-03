@@ -1,0 +1,10 @@
+{
+  "accuracy": 0.7186,
+  "f1": 0.5912,
+  "precision": 0.6026,
+  "recall": 0.5802,
+  "roc_auc": 0.7765,
+  "n_rules": 37,
+  "training_time": 12.73,
+  "maf_init": "clustering"
+}

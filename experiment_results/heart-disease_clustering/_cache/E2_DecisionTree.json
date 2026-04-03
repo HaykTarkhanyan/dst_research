@@ -1,0 +1,32 @@
+{
+  "accuracy": 0.7654,
+  "f1": 0.7246,
+  "precision": 0.7576,
+  "recall": 0.6944,
+  "roc_auc": 0.8296,
+  "initial_rules": 38,
+  "final_rules": 95,
+  "iterations": 3,
+  "history": [
+    {
+      "iteration": 1,
+      "weak_rules_found": 9,
+      "rules_mined": 24,
+      "total_rules": 62
+    },
+    {
+      "iteration": 2,
+      "weak_rules_found": 10,
+      "rules_mined": 15,
+      "total_rules": 77
+    },
+    {
+      "iteration": 3,
+      "weak_rules_found": 10,
+      "rules_mined": 18,
+      "total_rules": 95
+    }
+  ],
+  "training_time": 14.91,
+  "maf_init": "clustering"
+}
