@@ -60,7 +60,7 @@ class DSModelMultiQ(nn.Module):
             assert self.data is not None, "Data must be provided for clustering MAF method"
             masses = create_clustering_uncertainty(self.data, pred)
         elif method == "uniform":
-            masses = create_uniform_uncertainty()
+            masses = create_uniform_uncertainty(self.k)
         else:
             raise ValueError(f"Method {method} not available, select one from [random, clustering, uniform]")
         m = torch.tensor(masses, requires_grad=True, dtype=torch.float)

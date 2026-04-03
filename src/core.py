@@ -113,9 +113,11 @@ def create_clustering_uncertainty(data, pred):
     masses = filter_by_rule(data, pred, print_results=print_results_MAF_kmeans)
     return masses
 
-#TODO Figure out if I should return 3 or 4 values
-def create_uniform_uncertainty():
-    return 1/3, 1/3, 1/3
+def create_uniform_uncertainty(k=2):
+    """Create uniform MAF: equal belief across k classes, remainder to uncertainty."""
+    mass_per_class = 1.0 / (k + 1)
+    uncertainty = 1.0 - k * mass_per_class
+    return tuple([mass_per_class] * k + [uncertainty])
 
 
 def create_random_maf(uncertainty=0.8):
