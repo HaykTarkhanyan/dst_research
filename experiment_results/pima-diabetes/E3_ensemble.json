@@ -1,0 +1,26 @@
+{
+  "single_source": {
+    "accuracy": 0.7273,
+    "f1": 0.6087,
+    "precision": 0.6125,
+    "recall": 0.6049,
+    "roc_auc": 0.787,
+    "n_rules": 24,
+    "training_time": 5.76
+  },
+  "multi_source": {
+    "accuracy": 0.7013,
+    "f1": 0.549,
+    "precision": 0.5833,
+    "recall": 0.5185,
+    "roc_auc": 0.7745,
+    "n_rules": 49,
+    "rule_sources": {
+      "base": 24,
+      "SkopeRulesMiner": 10,
+      "RipperMiner": 7,
+      "DecisionTreeMiner": 8
+    },
+    "training_time": 11.66
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "DecisionTree_d4": {
+    "accuracy": 0.817,
+    "f1": 0.8676,
+    "precision": 0.8333,
+    "recall": 0.9048,
+    "roc_auc": 0.8016,
+    "training_time": 0.02
+  },
+  "DecisionTree_d8": {
+    "accuracy": 0.8076,
+    "f1": 0.8565,
+    "precision": 0.8465,
+    "recall": 0.8667,
+    "roc_auc": 0.7707,
+    "training_time": 0.03
+  },
+  "SkopeRules": {
+    "accuracy": 0.3375,
+    "f1": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "roc_auc": 0.8955,
+    "training_time": 7.83
+  },
+  "RuleFit": {
+    "accuracy": 0.8328,
+    "f1": 0.8698,
+    "precision": 0.8985,
+    "recall": 0.8429,
+    "roc_auc": 0.9017,
+    "training_time": 24.7
+  },
+  "GreedyRuleList": {
+    "accuracy": 0.7508,
+    "f1": 0.8159,
+    "precision": 0.7991,
+    "recall": 0.8333,
+    "roc_auc": 0.7527,
+    "training_time": 0.03
+  },
+  "FIGS": {
+    "accuracy": 0.8076,
+    "f1": 0.8585,
+    "precision": 0.8371,
+    "recall": 0.881,
+    "roc_auc": 0.8555,
+    "training_time": 0.47
+  },
+  "RIPPER": {
+    "accuracy": 0.183,
+    "f1": 0.116,
+    "precision": 0.2048,
+    "recall": 0.081,
+    "roc_auc": null,
+    "training_time": 4.39
+  }
+}

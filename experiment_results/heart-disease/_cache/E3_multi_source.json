@@ -1,0 +1,15 @@
+{
+  "accuracy": 0.7407,
+  "f1": 0.7407,
+  "precision": 0.6667,
+  "recall": 0.8333,
+  "roc_auc": 0.817,
+  "n_rules": 55,
+  "rule_sources": {
+    "base": 38,
+    "SkopeRulesMiner": 10,
+    "RipperMiner": 0,
+    "DecisionTreeMiner": 7
+  },
+  "training_time": 28.45
+}

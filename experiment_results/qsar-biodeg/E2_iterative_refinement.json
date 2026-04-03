@@ -1,0 +1,64 @@
+{
+  "SkopeRules": {
+    "accuracy": 0.8738,
+    "f1": 0.9057,
+    "precision": 0.8972,
+    "recall": 0.9143,
+    "roc_auc": 0.9294,
+    "initial_rules": 125,
+    "final_rules": 212,
+    "iterations": 3,
+    "history": [
+      {
+        "iteration": 1,
+        "weak_rules_found": 10,
+        "rules_mined": 27,
+        "total_rules": 152
+      },
+      {
+        "iteration": 2,
+        "weak_rules_found": 10,
+        "rules_mined": 30,
+        "total_rules": 182
+      },
+      {
+        "iteration": 3,
+        "weak_rules_found": 10,
+        "rules_mined": 30,
+        "total_rules": 212
+      }
+    ],
+    "training_time": 134.77
+  },
+  "DecisionTree": {
+    "accuracy": 0.8549,
+    "f1": 0.8889,
+    "precision": 0.902,
+    "recall": 0.8762,
+    "roc_auc": 0.9197,
+    "initial_rules": 125,
+    "final_rules": 203,
+    "iterations": 3,
+    "history": [
+      {
+        "iteration": 1,
+        "weak_rules_found": 10,
+        "rules_mined": 24,
+        "total_rules": 149
+      },
+      {
+        "iteration": 2,
+        "weak_rules_found": 10,
+        "rules_mined": 27,
+        "total_rules": 176
+      },
+      {
+        "iteration": 3,
+        "weak_rules_found": 10,
+        "rules_mined": 27,
+        "total_rules": 203
+      }
+    ],
+    "training_time": 15.32
+  }
+}

@@ -1,0 +1,3 @@
+{
+  "error": "All numeric features must be discretized prior to fitting!"
+}

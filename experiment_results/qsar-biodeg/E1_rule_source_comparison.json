@@ -1,0 +1,38 @@
+{
+  "single_feature": {
+    "accuracy": 0.8265,
+    "f1": 0.8622,
+    "precision": 0.9101,
+    "recall": 0.819,
+    "roc_auc": 0.9265,
+    "n_rules": 125,
+    "training_time": 18.0
+  },
+  "skope_rules": {
+    "accuracy": 0.8391,
+    "f1": 0.8828,
+    "precision": 0.8533,
+    "recall": 0.9143,
+    "roc_auc": 0.909,
+    "n_rules": 358,
+    "training_time": 31.11
+  },
+  "ripper": {
+    "accuracy": 0.8423,
+    "f1": 0.881,
+    "precision": 0.881,
+    "recall": 0.881,
+    "roc_auc": 0.9136,
+    "n_rules": 134,
+    "training_time": 17.89
+  },
+  "decision_tree": {
+    "accuracy": 0.8517,
+    "f1": 0.8873,
+    "precision": 0.8937,
+    "recall": 0.881,
+    "roc_auc": 0.9204,
+    "n_rules": 139,
+    "training_time": 15.24
+  }
+}
