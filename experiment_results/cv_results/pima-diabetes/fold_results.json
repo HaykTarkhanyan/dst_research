@@ -1,0 +1,498 @@
+{
+  "fold_results": {
+    "DSGD_base": [
+      {
+        "accuracy": 0.7532,
+        "f1": 0.6275,
+        "roc_auc": 0.8152,
+        "time": 17.8
+      },
+      {
+        "accuracy": 0.7987,
+        "f1": 0.699,
+        "roc_auc": 0.8373,
+        "time": 16.1
+      },
+      {
+        "accuracy": 0.7532,
+        "f1": 0.587,
+        "roc_auc": 0.8266,
+        "time": 18.0
+      },
+      {
+        "accuracy": 0.7712,
+        "f1": 0.6729,
+        "roc_auc": 0.8434,
+        "time": 22.3
+      },
+      {
+        "accuracy": 0.7255,
+        "f1": 0.5625,
+        "roc_auc": 0.7904,
+        "time": 12.9
+      }
+    ],
+    "DSGD_augmented": [
+      {
+        "accuracy": 0.7792,
+        "f1": 0.6667,
+        "roc_auc": 0.8064,
+        "time": 35.4
+      },
+      {
+        "accuracy": 0.7922,
+        "f1": 0.6863,
+        "roc_auc": 0.8504,
+        "time": 67.8
+      },
+      {
+        "accuracy": 0.7078,
+        "f1": 0.5545,
+        "roc_auc": 0.7781,
+        "time": 43.7
+      },
+      {
+        "accuracy": 0.7712,
+        "f1": 0.6789,
+        "roc_auc": 0.8436,
+        "time": 88.8
+      },
+      {
+        "accuracy": 0.7386,
+        "f1": 0.5918,
+        "roc_auc": 0.7391,
+        "time": 41.7
+      }
+    ],
+    "DSGD_iterative": [
+      {
+        "accuracy": 0.7597,
+        "f1": 0.6408,
+        "roc_auc": 0.8186,
+        "time": 85.4
+      },
+      {
+        "accuracy": 0.7662,
+        "f1": 0.6667,
+        "roc_auc": 0.7909,
+        "time": 170.1
+      },
+      {
+        "accuracy": 0.7662,
+        "f1": 0.64,
+        "roc_auc": 0.8073,
+        "time": 112.8
+      },
+      {
+        "accuracy": 0.7712,
+        "f1": 0.6789,
+        "roc_auc": 0.8602,
+        "time": 108.7
+      },
+      {
+        "accuracy": 0.7386,
+        "f1": 0.6,
+        "roc_auc": 0.7838,
+        "time": 97.0
+      }
+    ],
+    "DSGD_ensemble": [
+      {
+        "accuracy": 0.6688,
+        "f1": 0.4848,
+        "roc_auc": 0.725,
+        "time": 40.5
+      },
+      {
+        "accuracy": 0.7922,
+        "f1": 0.6923,
+        "roc_auc": 0.8083,
+        "time": 52.5
+      },
+      {
+        "accuracy": 0.6753,
+        "f1": 0.4681,
+        "roc_auc": 0.7345,
+        "time": 64.0
+      },
+      {
+        "accuracy": 0.7647,
+        "f1": 0.6327,
+        "roc_auc": 0.8556,
+        "time": 67.7
+      },
+      {
+        "accuracy": 0.732,
+        "f1": 0.5859,
+        "roc_auc": 0.7446,
+        "time": 48.0
+      }
+    ],
+    "DecisionTree_d4": [
+      {
+        "accuracy": 0.7532,
+        "f1": 0.6481,
+        "roc_auc": 0.7777,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.7597,
+        "f1": 0.6337,
+        "roc_auc": 0.7879,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.6948,
+        "f1": 0.4471,
+        "roc_auc": 0.7315,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.7451,
+        "f1": 0.6422,
+        "roc_auc": 0.8143,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.6993,
+        "f1": 0.5818,
+        "roc_auc": 0.7638,
+        "time": 0.0
+      }
+    ],
+    "DecisionTree_d8": [
+      {
+        "accuracy": 0.7013,
+        "f1": 0.5965,
+        "roc_auc": 0.6906,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.7338,
+        "f1": 0.6168,
+        "roc_auc": 0.7183,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.6688,
+        "f1": 0.4396,
+        "roc_auc": 0.6191,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.7582,
+        "f1": 0.6542,
+        "roc_auc": 0.7858,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.7255,
+        "f1": 0.5714,
+        "roc_auc": 0.6967,
+        "time": 0.0
+      }
+    ],
+    "RuleFit": [
+      {
+        "accuracy": 0.7273,
+        "f1": 0.5,
+        "roc_auc": 0.8197,
+        "time": 8.8
+      },
+      {
+        "accuracy": 0.7792,
+        "f1": 0.6047,
+        "roc_auc": 0.8335,
+        "time": 8.8
+      },
+      {
+        "accuracy": 0.7143,
+        "f1": 0.4634,
+        "roc_auc": 0.7983,
+        "time": 10.6
+      },
+      {
+        "accuracy": 0.8105,
+        "f1": 0.6882,
+        "roc_auc": 0.8704,
+        "time": 6.9
+      },
+      {
+        "accuracy": 0.7647,
+        "f1": 0.6,
+        "roc_auc": 0.7883,
+        "time": 7.3
+      }
+    ],
+    "FIGS": [
+      {
+        "accuracy": 0.7078,
+        "f1": 0.5794,
+        "roc_auc": 0.7468,
+        "time": 0.3
+      },
+      {
+        "accuracy": 0.7597,
+        "f1": 0.5647,
+        "roc_auc": 0.8173,
+        "time": 0.3
+      },
+      {
+        "accuracy": 0.7273,
+        "f1": 0.5532,
+        "roc_auc": 0.7667,
+        "time": 0.3
+      },
+      {
+        "accuracy": 0.7647,
+        "f1": 0.6327,
+        "roc_auc": 0.8219,
+        "time": 0.2
+      },
+      {
+        "accuracy": 0.7255,
+        "f1": 0.6182,
+        "roc_auc": 0.7687,
+        "time": 0.2
+      }
+    ],
+    "GreedyRuleList": [
+      {
+        "accuracy": 0.7273,
+        "f1": 0.4615,
+        "roc_auc": 0.7092,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.7532,
+        "f1": 0.5581,
+        "roc_auc": 0.7444,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.6429,
+        "f1": 0.5926,
+        "roc_auc": 0.6916,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.7124,
+        "f1": 0.5849,
+        "roc_auc": 0.7517,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.6797,
+        "f1": 0.5812,
+        "roc_auc": 0.7258,
+        "time": 0.0
+      }
+    ],
+    "GradientBoosting": [
+      {
+        "accuracy": 0.7468,
+        "f1": 0.6286,
+        "roc_auc": 0.8233,
+        "time": 0.9
+      },
+      {
+        "accuracy": 0.7208,
+        "f1": 0.5743,
+        "roc_auc": 0.8306,
+        "time": 0.9
+      },
+      {
+        "accuracy": 0.6948,
+        "f1": 0.5437,
+        "roc_auc": 0.7854,
+        "time": 1.0
+      },
+      {
+        "accuracy": 0.7516,
+        "f1": 0.6481,
+        "roc_auc": 0.8342,
+        "time": 0.6
+      },
+      {
+        "accuracy": 0.7451,
+        "f1": 0.6214,
+        "roc_auc": 0.7757,
+        "time": 0.7
+      }
+    ],
+    "RandomForest": [
+      {
+        "accuracy": 0.7403,
+        "f1": 0.6154,
+        "roc_auc": 0.8119,
+        "time": 0.9
+      },
+      {
+        "accuracy": 0.7792,
+        "f1": 0.6531,
+        "roc_auc": 0.85,
+        "time": 0.8
+      },
+      {
+        "accuracy": 0.7273,
+        "f1": 0.5714,
+        "roc_auc": 0.7954,
+        "time": 0.8
+      },
+      {
+        "accuracy": 0.7712,
+        "f1": 0.6535,
+        "roc_auc": 0.8787,
+        "time": 0.6
+      },
+      {
+        "accuracy": 0.7582,
+        "f1": 0.6337,
+        "roc_auc": 0.7991,
+        "time": 0.5
+      }
+    ],
+    "LogisticRegression": [
+      {
+        "accuracy": 0.7532,
+        "f1": 0.6042,
+        "roc_auc": 0.8394,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.7857,
+        "f1": 0.6452,
+        "roc_auc": 0.8181,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.8117,
+        "f1": 0.6947,
+        "roc_auc": 0.8422,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.7778,
+        "f1": 0.6531,
+        "roc_auc": 0.8442,
+        "time": 0.0
+      },
+      {
+        "accuracy": 0.7451,
+        "f1": 0.6139,
+        "roc_auc": 0.787,
+        "time": 0.0
+      }
+    ]
+  },
+  "summary": {
+    "DSGD_base": {
+      "accuracy_mean": 0.7604,
+      "accuracy_std": 0.0241,
+      "f1_mean": 0.6298,
+      "f1_std": 0.051,
+      "auc_mean": 0.8226,
+      "auc_std": 0.0187,
+      "n_folds": 5
+    },
+    "DSGD_augmented": {
+      "accuracy_mean": 0.7578,
+      "accuracy_std": 0.0306,
+      "f1_mean": 0.6356,
+      "f1_std": 0.0527,
+      "auc_mean": 0.8035,
+      "auc_std": 0.0415,
+      "n_folds": 5
+    },
+    "DSGD_iterative": {
+      "accuracy_mean": 0.7604,
+      "accuracy_std": 0.0115,
+      "f1_mean": 0.6453,
+      "f1_std": 0.0272,
+      "auc_mean": 0.8122,
+      "auc_std": 0.0269,
+      "n_folds": 5
+    },
+    "DSGD_ensemble": {
+      "accuracy_mean": 0.7266,
+      "accuracy_std": 0.0485,
+      "f1_mean": 0.5728,
+      "f1_std": 0.0857,
+      "auc_mean": 0.7736,
+      "auc_std": 0.0503,
+      "n_folds": 5
+    },
+    "DecisionTree_d4": {
+      "accuracy_mean": 0.7304,
+      "accuracy_std": 0.0277,
+      "f1_mean": 0.5906,
+      "f1_std": 0.0755,
+      "auc_mean": 0.775,
+      "auc_std": 0.0273,
+      "n_folds": 5
+    },
+    "DecisionTree_d8": {
+      "accuracy_mean": 0.7175,
+      "accuracy_std": 0.0304,
+      "f1_mean": 0.5757,
+      "f1_std": 0.0732,
+      "auc_mean": 0.7021,
+      "auc_std": 0.0535,
+      "n_folds": 5
+    },
+    "RuleFit": {
+      "accuracy_mean": 0.7592,
+      "accuracy_std": 0.0349,
+      "f1_mean": 0.5713,
+      "f1_std": 0.0804,
+      "auc_mean": 0.822,
+      "auc_std": 0.0289,
+      "n_folds": 5
+    },
+    "FIGS": {
+      "accuracy_mean": 0.737,
+      "accuracy_std": 0.0217,
+      "f1_mean": 0.5896,
+      "f1_std": 0.0307,
+      "auc_mean": 0.7843,
+      "auc_std": 0.0299,
+      "n_folds": 5
+    },
+    "GreedyRuleList": {
+      "accuracy_mean": 0.7031,
+      "accuracy_std": 0.0384,
+      "f1_mean": 0.5557,
+      "f1_std": 0.0485,
+      "auc_mean": 0.7245,
+      "auc_std": 0.0222,
+      "n_folds": 5
+    },
+    "GradientBoosting": {
+      "accuracy_mean": 0.7318,
+      "accuracy_std": 0.0214,
+      "f1_mean": 0.6032,
+      "f1_std": 0.0384,
+      "auc_mean": 0.8098,
+      "auc_std": 0.0244,
+      "n_folds": 5
+    },
+    "RandomForest": {
+      "accuracy_mean": 0.7552,
+      "accuracy_std": 0.0192,
+      "f1_mean": 0.6254,
+      "f1_std": 0.0305,
+      "auc_mean": 0.827,
+      "auc_std": 0.0323,
+      "n_folds": 5
+    },
+    "LogisticRegression": {
+      "accuracy_mean": 0.7747,
+      "accuracy_std": 0.0238,
+      "f1_mean": 0.6422,
+      "f1_std": 0.032,
+      "auc_mean": 0.8262,
+      "auc_std": 0.0217,
+      "n_folds": 5
+    }
+  }
+}

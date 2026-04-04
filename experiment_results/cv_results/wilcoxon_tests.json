@@ -1,0 +1,88 @@
+{
+  "DecisionTree_d4": {
+    "statistic": 4.0,
+    "p_value": 0.0137,
+    "significant": "True",
+    "mean_diff": 0.0239,
+    "wins": 9,
+    "losses": 1,
+    "ties": 0,
+    "n_datasets": 10
+  },
+  "DecisionTree_d8": {
+    "statistic": 12.0,
+    "p_value": 0.1309,
+    "significant": "False",
+    "mean_diff": 0.0168,
+    "wins": 7,
+    "losses": 3,
+    "ties": 0,
+    "n_datasets": 10
+  },
+  "FIGS": {
+    "statistic": 11.0,
+    "p_value": 0.1055,
+    "significant": "False",
+    "mean_diff": 0.0146,
+    "wins": 8,
+    "losses": 2,
+    "ties": 0,
+    "n_datasets": 10
+  },
+  "GradientBoosting": {
+    "statistic": 19.0,
+    "p_value": 0.4316,
+    "significant": "False",
+    "mean_diff": -0.0124,
+    "wins": 3,
+    "losses": 7,
+    "ties": 0,
+    "n_datasets": 10
+  },
+  "GreedyRuleList": {
+    "statistic": 3.0,
+    "p_value": 0.0098,
+    "significant": "True",
+    "mean_diff": 0.0523,
+    "wins": 9,
+    "losses": 1,
+    "ties": 0,
+    "n_datasets": 10
+  },
+  "LogisticRegression": {
+    "statistic": 26.0,
+    "p_value": 0.9219,
+    "significant": "False",
+    "mean_diff": 0.0035,
+    "wins": 5,
+    "losses": 4,
+    "ties": 1,
+    "n_datasets": 10
+  },
+  "RandomForest": {
+    "statistic": 9.0,
+    "p_value": 0.0645,
+    "significant": "False",
+    "mean_diff": -0.0212,
+    "wins": 3,
+    "losses": 7,
+    "ties": 0,
+    "n_datasets": 10
+  },
+  "RuleFit": {
+    "statistic": 21.5,
+    "p_value": 0.5742,
+    "significant": "False",
+    "mean_diff": -0.0051,
+    "wins": 5,
+    "losses": 5,
+    "ties": 0,
+    "n_datasets": 10
+  },
+  "_ablation_iterative_vs_base": {
+    "statistic": 40.0,
+    "p_value": 0.0195,
+    "significant": "True",
+    "mean_diff": 0.0258
+  }
+}
