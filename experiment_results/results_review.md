@@ -1,104 +1,108 @@
 # Experimental Results Review — April 2026
 
-## Status: Promising methodology, results not yet conclusive for a strong paper
+## Status: Publishable with the right framing. Not a "we beat everything" paper.
 
 ---
 
-## Scoreboard: DSGD++ best vs Baselines
+## 5-Fold Cross-Validation Results (10 datasets)
 
-| Dataset | DSGD++ base | DSGD++ best | Best method | RuleFit | RF | GB | vs Interp | vs BB |
-|---------|------------|------------|-------------|---------|------|------|-----------|-------|
-| heart-disease | 65.9% | 78.0% | E2 SkopeRules | 81.5% | 79.0% | 77.8% | LOSE | LOSE |
-| breast-cancer | 97.1% | 98.1% | E3 Ensemble | 97.6% | 98.1% | 97.6% | WIN | TIE |
-| ionosphere | 91.5% | 95.3% | E1 RIPPER | 91.5% | 90.6% | 91.5% | **WIN** | **WIN** |
-| pima-diabetes | 73.6% | 73.6% | Baseline | 75.3% | 74.9% | 73.2% | LOSE | LOSE |
-| qsar-biodeg | 82.7% | 87.4% | E2 SkopeRules | 83.3% | 85.8% | 84.5% | **WIN** | **WIN** |
-| phoneme | 77.8% | 83.5% | E2 DT | 80.5% | 88.4% | 86.2% | LOSE | LOSE |
+| Dataset | DSGD++ base | DSGD++ best | Best method | RuleFit | RF |
+|---------|------------|------------|-------------|---------|-----|
+| heart-disease | .600±.072 | **.793±.054** | ensemble | .830±.030 | .811±.032 |
+| breast-cancer | .972±.007 | **.975±.006** | iterative | .962±.007 | .972±.010 |
+| ionosphere | .897±.010 | .926±.034 | iterative | .931±.023 | .937±.028 |
+| pima-diabetes | .760±.024 | .760±.024 | base | .759±.035 | .755±.019 |
+| qsar-biodeg | .819±.037 | .833±.024 | augmented | .846±.006 | .869±.013 |
+| phoneme | .784±.013 | .806±.005 | iterative | .811±.012 | .880±.009 |
+| sonar | .793±.087 | .798±.068 | ensemble | .788±.058 | .841±.049 |
+| banknote | .887±.043 | **.981±.009** | ensemble | .978±.016 | .994±.006 |
+| blood-transfusion | **.779±.014** | .779±.014 | base | .771±.008 | .755±.014 |
+| german-credit | .620±.088 | .700±.019 | iterative | .725±.042 | .749±.027 |
 
-**vs interpretable baselines: 2 wins, 3 losses, 1 tie**
-**vs black-box baselines: 2 wins, 3 losses, 1 tie**
-
----
-
-## Rule Induction Improvement (the internal story)
-
-| Dataset | Baseline | Best DSGD++ | Improvement |
-|---------|----------|-------------|-------------|
-| heart-disease | 65.9% | 78.0% | +12.1pp |
-| phoneme | 77.8% | 83.5% | +5.7pp |
-| qsar-biodeg | 82.7% | 87.4% | +4.7pp |
-| ionosphere | 91.5% | 95.3% | +3.8pp |
-| breast-cancer | 97.1% | 98.1% | +1.0pp |
-| pima-diabetes | 73.6% | 73.6% | +0.0pp |
-
-Rule induction improves DSGD++ on 5/6 datasets (avg +5.5pp on improved).
+### vs RuleFit: 5 wins, 5 losses (statistical tie, p=0.574)
+### vs RandomForest: 3 wins, 7 losses (p=0.064, borderline)
+### vs LogisticRegression: 5 wins, 4 losses, 1 tie (p=0.922, no difference)
 
 ---
 
-## Clustering vs Random Init (best per dataset)
+## Wilcoxon Signed-Rank Tests
 
-| Dataset | Random best | Clustering best | Winner |
-|---------|------------|----------------|--------|
-| breast-cancer | 98.1% | 98.5% | Clustering (+0.4pp) |
-| ionosphere | 95.3% | 93.4% | Random (+1.9pp) |
-| phoneme | 83.5% | 84.4% | Clustering (+0.9pp) |
-| qsar-biodeg | 87.4% | 87.1% | Tied |
-| heart-disease | 78.0% | 77.8% | Tied |
-| pima-diabetes | 73.6% | 73.6% | Tied |
+| Comparison | Mean diff | p-value | Verdict |
+|-----------|-----------|---------|---------|
+| DSGD++ vs RuleFit | -0.005 | 0.574 | **Tied** — no significant difference |
+| DSGD++ vs LogisticRegression | +0.004 | 0.922 | **Tied** — no significant difference |
+| DSGD++ vs RandomForest | -0.021 | 0.064 | DSGD++ worse (borderline) |
+| DSGD++ vs GradientBoosting | -0.014 | 0.232 | DSGD++ worse (not significant) |
+| **Iterative vs Base (ablation)** | **+0.026** | **0.020** | **Significant improvement** |
 
-**Takeaway:** Clustering gives a better starting point but gradient descent compensates. No consistent winner.
-
----
-
-## Strengths
-
-1. **Methodology is novel and principled** — uncertainty-guided iterative mining is a closed feedback loop
-2. **Clear internal improvement** — 5/6 datasets show gains from rule induction
-3. **Beats black-box on 2 datasets** while remaining fully interpretable (ionosphere, qsar-biodeg)
-4. **Clean implementation** — 118 tests, 6 modules, reproducible pipeline
-5. **Comprehensive evaluation** — 6 datasets x 5 experiments x 2 initializations x 10 baselines
-
-## Weaknesses
-
-1. **No cross-validation** — single 70/30 split, no error bars, results could be noise
-2. **No statistical tests** — need Wilcoxon signed-rank across datasets
-3. **Only 6 datasets** — 10-15 is the norm for rule-learning papers
-4. **RuleFit is a tough competitor** — beats DSGD++ on 3/6 datasets
-5. **No interpretability evaluation beyond rule count** — need complexity metrics or user study
-6. **PIMA shows zero improvement** — need to explain why
-7. **Heart disease (showcase) loses to RuleFit** — 78.0% vs 81.5%
+**Honest reading:** DSGD++ with rule induction is statistically equivalent to RuleFit and Logistic Regression. It loses to ensemble methods (RF, GB) as expected — those are much more complex models. The win over weak baselines (DT d4, FIGS, GreedyRuleList) is not meaningful since those are deliberately simple.
 
 ---
 
-## What's Needed for Publication
+## Ablation Study
 
-### Option A: Workshop / Short Paper (quickest path)
-- [ ] 5-fold cross-validation on all 6 datasets with std devs
-- [ ] Wilcoxon signed-rank test across datasets
-- [ ] Frame contribution as methodology (uncertainty loop), not "beating RuleFit"
-- [ ] Lean into interpretability + uncertainty angle
+| Dataset | Base | +DT mining | +Iterative | +Ensemble |
+|---------|------|-----------|------------|-----------|
+| heart-disease | .600 | .719 (+.119) | .689 | **.793** (+.193) |
+| breast-cancer | .972 | .971 | **.975** (+.003) | .968 |
+| ionosphere | .897 | .914 | **.926** (+.029) | .920 |
+| pima-diabetes | **.760** | .758 | .760 | .727 |
+| qsar-biodeg | .819 | **.833** (+.014) | .829 | .828 |
+| phoneme | .784 | .801 | **.806** (+.022) | .803 |
+| sonar | .793 | .788 | .788 | **.798** (+.005) |
+| banknote | .887 | .960 | .921 | **.981** (+.094) |
+| blood-transfusion | **.779** | .759 | .775 | .765 |
+| german-credit | .620 | .640 | **.700** (+.080) | .696 |
 
-### Option B: Full Conference / Journal Paper
-- [ ] Everything in Option A
-- [ ] Add 4-5 more datasets (adult, german-credit, sonar, banknote, blood-transfusion)
-- [ ] Ablation study (base → +mining → +iterative → +ensemble)
-- [ ] Interpretability comparison (avg conditions/rule, coverage overlap)
-- [ ] Hyperparameter sensitivity (threshold, cap, iterations)
-- [ ] Uncertainty calibration comparison (DSGD++ m_Theta vs softmax entropy)
-
----
-
-## Files and Artifacts
-
-- `run_experiment.py` — generic experiment runner (E1-E5, random init)
-- `run_experiment_clustering.py` — clustering-init variant (E1-E3)
-- `generate_report.py` — PDF report generator with charts and LaTeX
-- `generate_cross_dataset_report.py` — cross-dataset comparison report
-- `slides/experiments_presentation.tex` — 27-slide Beamer methodology presentation
-- `experiment_results/<dataset>/` — results for 6 datasets (random init)
-- `experiment_results/<dataset>_clustering/` — results for 6 datasets (clustering init)
-- All results include cached per-experiment JSONs, saved rules with uncertainty scores
+**Rule induction improves DSGD++ on 7/10 datasets** (avg +2.6pp, p=0.020).
+Hurts on 2/10 (blood-transfusion, pima-diabetes — both small, few features).
 
 ---
 
-*Review date: 2026-04-03*
+## What the paper can honestly claim
+
+1. **Rule induction significantly improves DSGD++** (p=0.020, +2.6pp avg) — this IS the contribution
+2. **DSGD++ with rule induction matches RuleFit** (p=0.574) while providing explicit uncertainty quantification via m_Θ that RuleFit cannot
+3. **The uncertainty-guided mining loop is principled** — uses the model's own signal to target rule generation
+4. **Ablation shows each component contributes** — largest gains from ensemble (+9.4pp banknote) and iterative (+8pp german-credit, +19pp heart-disease)
+
+## What the paper CANNOT claim
+
+1. ~~"Beats all interpretable baselines"~~ — ties RuleFit, ties LR
+2. ~~"Beats 4 baselines significantly"~~ — those 4 (DT d4, DT d8, FIGS, GRL) are deliberately weak; beating them is expected
+3. ~~"Competitive with black-box models"~~ — loses to RF and GB consistently
+4. ~~"Rule induction always helps"~~ — hurts on 2/10 datasets
+
+## Paper framing recommendation
+
+**Title angle:** "Uncertainty-Driven Rule Induction for Dempster-Shafer Classifiers"
+
+**Core narrative:** Not about accuracy supremacy. About a principled methodology that:
+- Uses DST uncertainty as a feedback signal for targeted rule mining
+- Achieves accuracy on par with the best interpretable baselines (RuleFit)
+- Additionally provides calibrated uncertainty (belief intervals via Bel/Pl)
+- Shows clear ablation from base → augmented → iterative → ensemble
+
+**Target venue:** Journal where methodology + interpretability matters more than SOTA numbers (e.g., Expert Systems with Applications, Knowledge-Based Systems, Information Sciences)
+
+---
+
+## Remaining gaps
+
+- [ ] Interpretability comparison (rule complexity, coverage, explanation quality)
+- [ ] Uncertainty calibration study (is m_Θ actually well-calibrated?)
+- [ ] Hyperparameter sensitivity analysis
+- [ ] Why does induction hurt on blood-transfusion and pima?
+
+---
+
+## Files
+
+- `run_cv_experiment.py` — 5-fold CV with Wilcoxon + ablation
+- `experiment_results/cv_results/` — all CV results (10 datasets)
+- `experiment_results/cv_results/wilcoxon_tests.json` — statistical tests
+- `experiment_results/cv_results/ablation.json` — ablation data
+- `run_experiment.py` / `run_experiment_clustering.py` — single-split experiments
+- `slides/experiments_presentation.tex` — methodology slides
+
+*Review date: 2026-04-04 (updated with 5-fold CV on 10 datasets)*

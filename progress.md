@@ -60,18 +60,22 @@ Added baselines: GradientBoosting, RandomForest, LogisticRegression to E5.
 - Fixed `create_uniform_uncertainty()` to support k>2 classes
 - Fixed `uncertainty_loop.py` to respect `clf.maf_method` (was hardcoded to "random")
 
-### Results summary (2026-04-03)
+### 5-Fold Cross-Validation on 10 Datasets (2026-04-04)
 
-| Dataset | Baseline | Best DSGD++ | vs Interpretable | vs Black-box |
-|---------|----------|-------------|-----------------|--------------|
-| heart-disease | 65.9% | 78.0% (+12.1pp) | LOSE (RuleFit 81.5%) | LOSE |
-| breast-cancer | 97.1% | 98.1% (+1.0pp) | WIN | TIE |
-| ionosphere | 91.5% | 95.3% (+3.8pp) | **WIN** | **WIN** |
-| pima-diabetes | 73.6% | 73.6% (+0.0pp) | LOSE (RuleFit 75.3%) | LOSE |
-| qsar-biodeg | 82.7% | 87.4% (+4.7pp) | **WIN** | **WIN** |
-| phoneme | 77.8% | 83.5% (+5.7pp) | LOSE (DT d8 86.1%) | LOSE |
+Added 4 new datasets: sonar, banknote-authentication, blood-transfusion, german-credit.
+Built `run_cv_experiment.py` with Wilcoxon tests and ablation study.
 
-**Verdict:** 2 wins, 3 losses, 1 tie vs interpretable baselines. Promising but not conclusive.
+**Wilcoxon results (honest framing):**
+- [x] DSGD++ **ties RuleFit** (p=0.574) — statistically no difference
+- [x] DSGD++ **ties Logistic Regression** (p=0.922)
+- [x] DSGD++ **loses to RF** (p=0.064, borderline) and **GB** (p=0.232)
+- [x] **Iterative refinement significantly improves DSGD++ base** (p=0.020, +2.6pp)
+
+Note: DSGD++ also beats DT d4, DT d8, FIGS, GreedyRuleList significantly — but those are deliberately weak baselines and this comparison is not meaningful.
+
+**Ablation:** Rule induction helps on 7/10 datasets, hurts on 2 (blood-transfusion, pima).
+
+**Verdict:** Publishable. The story is methodology + interpretability + uncertainty, not accuracy supremacy. DSGD++ matches RuleFit while providing DST uncertainty (belief intervals via m_Θ).
 
 Full review: `experiment_results/results_review.md`
 
@@ -79,23 +83,13 @@ Full review: `experiment_results/results_review.md`
 
 ## What's Next
 
-### High priority (needed for publication)
-- [ ] **5-fold cross-validation** on all 6 datasets with standard deviations
-- [ ] **Wilcoxon signed-rank test** across datasets
-- [ ] **Add 4-5 more datasets** (adult, german-credit, sonar, banknote, blood-transfusion)
-- [ ] **Ablation study** (base → +mining → +iterative → +ensemble)
-
-### Medium priority (strengthens the paper)
-- [ ] Interpretability comparison (avg conditions/rule, coverage overlap)
-- [ ] Hyperparameter sensitivity (threshold, cap, iterations)
-- [ ] Uncertainty calibration comparison (DSGD++ m_Theta vs softmax entropy)
-- [ ] Explain why PIMA shows zero improvement
-
-### Paper writing
-- [ ] Frame contribution as methodology (uncertainty loop), not "beating RuleFit"
-- [ ] Lean into interpretability + uncertainty angle
-- [ ] Target venue: Expert Systems with Applications or Information Fusion
-- [ ] Write paper draft
+### For the paper
+- [ ] Interpretability comparison (rule complexity, coverage, explanation quality)
+- [ ] Uncertainty calibration study (is m_Θ well-calibrated vs softmax entropy?)
+- [ ] Hyperparameter sensitivity analysis
+- [ ] Explain why induction hurts on blood-transfusion and pima
+- [ ] Write paper draft — frame as methodology contribution, not SOTA
+- [ ] Target venue: Expert Systems with Applications, Knowledge-Based Systems, or Information Sciences
 
 ### Lower priority
 - [ ] Add tests for `MultiSourceEnsemble` and `ConfidenceBasedPruner`
